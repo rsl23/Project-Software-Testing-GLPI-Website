@@ -1,0 +1,33 @@
+-------------------------------------------------------------------------------
+Test set: com.proyek.tests.FullFlowTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 21.88 s <<< FAILURE! -- in com.proyek.tests.FullFlowTest
+com.proyek.tests.FullFlowTest.fullDemoFlow -- Time elapsed: 19.30 s <<< ERROR!
+org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.18.1', revision: 'b1d3319b48'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.5'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [eeb9c0f8bfdfe4a1499b93f0637288a9, switchToWindow {handle=CF6825619EBE4315A99443F627E532AC}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.169, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: C:\Users\El\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51544}, goog:processID: 16060, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51544/devtoo..., se:cdpVersion: 143.0.7499.169, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: eeb9c0f8bfdfe4a1499b93f0637288a9
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(Unknown Source)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source)
+	at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:519)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteTargetLocator.window(RemoteWebDriver.java:1119)
+	at com.proyek.pages.HomePage.closeNewTab(HomePage.java:184)
+	at com.proyek.pages.HomePage.clickAndReturn(HomePage.java:169)
+	at com.proyek.pages.HomePage.clickGetStartedHelpdeskAndClose(HomePage.java:67)
+	at com.proyek.pages.HomePage.testAllElementsComplete(HomePage.java:148)
+	at com.proyek.tests.FullFlowTest.fullDemoFlow(FullFlowTest.java:21)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.base/java.util.ArrayList.forEach(Unknown Source)
+	at java.base/java.util.ArrayList.forEach(Unknown Source)
+

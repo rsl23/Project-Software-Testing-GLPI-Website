@@ -1,0 +1,10 @@
+com\proyek\pages\AdministrationPage.class
+com\proyek\pages\DownloadPage.class
+com\proyek\pages\PricesPage.class
+com\proyek\base\BasePage.class
+com\proyek\pages\HomePage.class
+com\proyek\pages\HelpdeskPage.class
+com\proyek\pages\FaqPage.class
+com\proyek\base\BaseTest.class
+com\proyek\pages\CmdbPage.class
+com\proyek\pages\FinancePage.class
