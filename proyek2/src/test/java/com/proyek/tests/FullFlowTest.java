@@ -16,9 +16,9 @@ public class FullFlowTest extends BaseTest {
     @Test
     void fullDemoFlow() {
         // 1️⃣ Home page
-        HomePage home = new HomePage(driver);
-        home.open();
-        home.testAllElementsComplete();
+        // HomePage home = new HomePage(driver);
+        // home.open();
+        // home.testAllElementsComplete();
 
         // 2️⃣ Helpdesk page
         // HelpdeskPage helpdesk = new HelpdeskPage(driver);
@@ -51,9 +51,8 @@ public class FullFlowTest extends BaseTest {
         // download.testAllElementsComplete();
 
         // 8️⃣ FAQ page
-        // FaqPage faq = new FaqPage(driver);
-        // faq.open();
-        // faq.testAllElementsComplete();
-
+        FaqPage faq = new FaqPage(driver);
+        faq.open();
+        faq.testAllElementsComplete();
     }
 }
