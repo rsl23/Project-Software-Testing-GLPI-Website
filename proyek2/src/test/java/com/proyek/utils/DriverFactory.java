@@ -1,10 +1,12 @@
 package com.proyek.utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import java.time.Duration;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
@@ -13,11 +15,15 @@ public class DriverFactory {
 
         ChromeOptions options = new ChromeOptions();
 
-        // Coba Brave
-        try {
-            options.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
+        // Cek apakah Brave Browser terinstall
+        String bravePath = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe";
+        java.io.File braveFile = new java.io.File(bravePath);
+        
+        if (braveFile.exists()) {
+            options.setBinary(bravePath);
             System.out.println("Using Brave Browser");
-        } catch (Exception e) {
+        } else {
+            // Gunakan Chrome default (tidak perlu set binary)
             System.out.println("Using Chrome Browser");
         }
 
