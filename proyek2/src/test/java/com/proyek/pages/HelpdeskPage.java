@@ -22,7 +22,7 @@ public class HelpdeskPage extends BasePage {
         demoSleep(1200);
     }
 
-    // ================= HERO =================
+    // ================= LOCATORS =================
     private final By heroTitle = By.tagName("h1");
 
     private final Map<String, String> heroButtons = Map.of(
@@ -31,24 +31,15 @@ public class HelpdeskPage extends BasePage {
             "accessInstance", "access my glpi instance",
             "openMyInstance", "open my glpi instance");
 
-    // ================= TUTORIAL =================
-    private final List<String> tutorialButtonsText = List.of(
-            "Discover the Forms", "Next Step", "Finish");
-
-    // ================= TESTIMONIAL / CTA =================
     private final Map<String, String> ctaButtons = Map.of(
             "viewTestimonials", "View All Testimonials",
             "exploreNow", "Explore Now");
 
-    // ================= FEATURES =================
     private final By startNowFeaturesBtn = By.cssSelector(
             "a.ct-link-button.btn-primary[href*='register.php']:not(.btn-m)");
 
-    // ================= NEWSLETTER =================
     private final By newsletterEmail = By.cssSelector("input[type='email']");
     private final By newsletterSubmit = By.cssSelector("input[type='submit']");
-
-    // ================= SOCIAL =================
     private final By socialLinks = By.cssSelector("footer a[target='_blank'][href^='http']");
 
     // ================= VISIBILITY =================
@@ -66,7 +57,14 @@ public class HelpdeskPage extends BasePage {
             scrollIntoView(el);
             highlight(el);
             demoSleep(600);
-            el.click();
+
+            // Klik pakai JS jika intercept
+            try {
+                el.click();
+            } catch (ElementClickInterceptedException e) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+            }
+
             demoSleep(2000);
             closeNewTab(main);
         } catch (TimeoutException e) {
@@ -82,7 +80,6 @@ public class HelpdeskPage extends BasePage {
 
     public void clickCtaButton(String key) {
         if (ctaButtons.containsKey(key)) {
-            // Explore Now perlu kembali ke helpdesk
             if ("exploreNow".equals(key)) {
                 clickExploreNowAndReturn(ctaButtons.get(key));
             } else {
@@ -93,16 +90,22 @@ public class HelpdeskPage extends BasePage {
 
     private void clickExploreNowAndReturn(String buttonText) {
         String main = driver.getWindowHandle();
-        WebElement el = driver.findElement(
-                By.xpath("//a[contains(text(),'" + buttonText + "')]"));
+        WebElement el = driver.findElement(By.xpath("//a[contains(text(),'" + buttonText + "')]"));
         scrollIntoView(el);
         highlight(el);
         demoSleep(600);
-        el.click();
-        demoSleep(2000);
 
+        // Klik pakai JS jika intercept
+        try {
+            el.click();
+        } catch (ElementClickInterceptedException e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+        }
+
+        demoSleep(2000);
         closeNewTab(main);
 
+        // Kembali ke helpdesk
         driver.get(helpdeskUrl);
         demoSleep(1200);
     }
@@ -112,17 +115,13 @@ public class HelpdeskPage extends BasePage {
         String mainWindow = driver.getWindowHandle();
 
         try {
-            // Cari iframe
             WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(
                     By.cssSelector("iframe[title*='Inventaire']")));
             driver.switchTo().frame(iframe);
             demoSleep(800);
 
-            // Loop sampai ga ada tombol lagi
             while (true) {
                 WebElement nextBtn = null;
-
-                // Cari tombol yang visible & clickable di step saat ini
                 try {
                     List<WebElement> candidates = driver.findElements(By.xpath("//a | //button | //*[@role='button']"));
                     for (WebElement btn : candidates) {
@@ -135,7 +134,7 @@ public class HelpdeskPage extends BasePage {
                 }
 
                 if (nextBtn == null)
-                    break; // ga ada tombol lagi, keluar loop
+                    break;
 
                 scrollIntoView(nextBtn);
                 highlight(nextBtn);
@@ -143,11 +142,10 @@ public class HelpdeskPage extends BasePage {
 
                 try {
                     nextBtn.click();
-                } catch (Exception e) {
+                } catch (ElementClickInterceptedException e) {
                     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextBtn);
                 }
-
-                demoSleep(1000); // tunggu step berikutnya muncul
+                demoSleep(1000);
             }
 
         } catch (TimeoutException e) {
@@ -166,7 +164,13 @@ public class HelpdeskPage extends BasePage {
             scrollIntoView(btn);
             highlight(btn);
             demoSleep(600);
-            btn.click();
+
+            try {
+                btn.click();
+            } catch (ElementClickInterceptedException e) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+            }
+
             demoSleep(2000);
             closeNewTab(main);
         } catch (TimeoutException e) {
@@ -179,14 +183,12 @@ public class HelpdeskPage extends BasePage {
         scrollToFooter();
         demoSleep(800);
 
-        // isi email
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(newsletterEmail));
         highlight(emailInput);
         emailInput.clear();
         emailInput.sendKeys(email);
         demoSleep(600);
 
-        // centang checkbox persetujuan jika belum dicentang
         By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name*='checkbox']");
         try {
             WebElement checkbox = driver.findElement(newsletterCheckbox);
@@ -201,7 +203,6 @@ public class HelpdeskPage extends BasePage {
             System.out.println("Checkbox newsletter tidak ditemukan, lanjut submit");
         }
 
-        // klik submit
         driver.findElement(newsletterSubmit).click();
         demoSleep(1000);
     }
@@ -218,38 +219,19 @@ public class HelpdeskPage extends BasePage {
                     scrollIntoView(link);
                     highlight(link);
                     demoSleep(600);
-                    link.click();
+
+                    try {
+                        link.click();
+                    } catch (ElementClickInterceptedException e) {
+                        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", link);
+                    }
+
                     demoSleep(2000);
                     closeNewTab(main);
                 }
             } catch (Exception ignored) {
             }
         }
-    }
-
-    // ================= FULL DEMO FLOW =================
-    public void testAllElementsComplete() {
-        // Hero section
-        clickHeroButton("firstTicket");
-        clickHeroButton("startNowHero");
-        clickHeroButton("accessInstance");
-        clickHeroButton("openMyInstance");
-
-        // Tutorial / Try Ticketing
-        clickTutorialIframe();
-
-        // Testimonial / CTA
-        clickCtaButton("viewTestimonials");
-        clickCtaButton("exploreNow");
-
-        // Features section: Start Now besar
-        clickStartNowFeatures();
-
-        // Newsletter
-        fillNewsletter("demo@test.com");
-
-        // Social links
-        clickAllSocialMediaLinks();
     }
 
     // ================= HELPERS =================

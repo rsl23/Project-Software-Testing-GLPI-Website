@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FaqPage extends BasePage {
 
-    private final String faqUrl = "https://www.glpi-project.org/en/faq/";
+    public final String faqUrl = "https://www.glpi-project.org/en/faq/";
 
     public FaqPage(WebDriver driver) {
         super(driver);
@@ -20,54 +20,54 @@ public class FaqPage extends BasePage {
     }
 
     // ================= PAGE =================
-    private final By pageTitle = By.xpath("//h1[contains(.,'Frequently Asked Questions')]");
+    public final By pageTitle = By.xpath("//h1[contains(.,'Frequently Asked Questions')]");
 
     public boolean isPageVisible() {
         return isVisible(pageTitle);
     }
 
-    // ================= DROPDOWN =================
-    private final By inventoryDropdown = By.xpath("//h4[text()='Inventory']/ancestor::button");
-    private final By notificationsDropdown = By.xpath("//h4[text()='Notifications and receiver']/ancestor::button");
-    private final By groupsDropdown = By.xpath("//h4[text()='Groups and users']/ancestor::button");
-    private final By customiseDropdown = By.xpath("//h4[text()='Customise my instance']/ancestor::button");
-    private final By pluginsDropdown = By.xpath("//h4[text()='GLPI and its plugins']/ancestor::button");
-    private final By authSSODropdown = By.xpath("//h4[text()='Authentication and SSO']/ancestor::button");
-    private final By scimDropdown = By.xpath("//h4[text()='Configure SCIM']/ancestor::button");
-    private final By webhookDropdown = By.xpath("//h4[text()='How to configure a webhook?']/ancestor::button");
+    // ================= DROPDOWNS =================
+    public final By inventoryDropdown = By.xpath("//h4[text()='Inventory']/ancestor::button");
+    public final By notificationsDropdown = By.xpath("//h4[text()='Notifications and receiver']/ancestor::button");
+    public final By groupsDropdown = By.xpath("//h4[text()='Groups and users']/ancestor::button");
+    public final By customiseDropdown = By.xpath("//h4[text()='Customise my instance']/ancestor::button");
+    public final By pluginsDropdown = By.xpath("//h4[text()='GLPI and its plugins']/ancestor::button");
+    public final By authSSODropdown = By.xpath("//h4[text()='Authentication and SSO']/ancestor::button");
+    public final By scimDropdown = By.xpath("//h4[text()='Configure SCIM']/ancestor::button");
+    public final By webhookDropdown = By.xpath("//h4[text()='How to configure a webhook?']/ancestor::button");
 
     // ================= BUTTONS =================
-    private final By inventoryButton = By.xpath("//a[contains(text(),'Inventory my IT equipment')]");
-    private final By notificationsButton = By.xpath("//a[contains(text(),'All about notifications')]");
-    private final By groupsButton = By.xpath("//a[contains(text(),'Manage my groups and my users')]");
-    private final By customiseButton = By.xpath("//a[contains(text(),'Customise my instance')]");
-    private final By glpiPluginsButton = By.xpath("//a[contains(text(),'See the catalogue')]");
-    private final By authSSOButton = By.xpath("//a[contains(text(),'Authenticate my users')]");
-    private final By scimButton = By.xpath("//a[contains(text(),'Import my users')]");
-    private final By webhookButton = By.xpath("//a[contains(text(),'Configure my Webhooks')]");
-    private final By viewFullFAQButton = By.xpath("//a[contains(text(),'View the full FAQ')]");
-    private final By seePluginsFaqButton = By.id("link_button-364-104");
-    private final By viewAllTestimonials = By.xpath("//a[contains(text(),'View All Testimonials')]");
-    private final By exploreNowButton = By.id("link_button-389-104");
-    private final By startNowButton = By.id("link_button-428-104");
+    public final By inventoryButton = By.xpath("//a[contains(text(),'Inventory my IT equipment')]");
+    public final By notificationsButton = By.xpath("//a[contains(text(),'All about notifications')]");
+    public final By groupsButton = By.xpath("//a[contains(text(),'Manage my groups and my users')]");
+    public final By customiseButton = By.xpath("//a[contains(text(),'Customise my instance')]");
+    public final By glpiPluginsButton = By.xpath("//a[contains(text(),'See the catalogue')]");
+    public final By authSSOButton = By.xpath("//a[contains(text(),'Authenticate my users')]");
+    public final By scimButton = By.xpath("//a[contains(text(),'Import my users')]");
+    public final By webhookButton = By.xpath("//a[contains(text(),'Configure my Webhooks')]");
+    public final By viewFullFAQButton = By.xpath("//a[contains(text(),'View the full FAQ')]");
+    public final By seePluginsFaqButton = By.id("link_button-364-104");
+    public final By viewAllTestimonials = By.xpath("//a[contains(text(),'View All Testimonials')]");
+    public final By exploreNowButton = By.id("link_button-389-104");
+    public final By startNowButton = By.id("link_button-428-104");
 
     // ================= CONTACT FORM =================
-    private final By lastName = By.name("your-name");
-    private final By firstName = By.name("your-first-name");
-    private final By company = By.name("societe");
-    private final By country = By.name("pays");
-    private final By email = By.name("your-email");
-    private final By phone = By.name("your-phone");
-    private final By message = By.name("your-message");
-    private final By contactSubmit = By.cssSelector("input[type='submit'][value='Contact us']");
+    public final By lastName = By.name("your-name");
+    public final By firstName = By.name("your-first-name");
+    public final By company = By.name("societe");
+    public final By country = By.name("pays");
+    public final By email = By.name("your-email");
+    public final By phone = By.name("your-phone");
+    public final By message = By.name("your-message");
+    public final By contactSubmit = By.cssSelector("input[type='submit'][value='Contact us']");
 
     // ================= NEWSLETTER =================
-    private final By newsletterEmail = By.cssSelector("input[name='email']");
-    private final By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name='checkbox-75[]']");
-    private final By newsletterSubmit = By.cssSelector("input.wpcf7-submit.btn-nl");
+    public final By newsletterEmail = By.cssSelector("input[name='email']");
+    public final By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name='checkbox-75[]']");
+    public final By newsletterSubmit = By.cssSelector("input.wpcf7-submit.btn-nl");
 
-    // ================= UTIL =================
-    private void safeClick(WebElement el) {
+    // ================= HELPERS =================
+    public void safeClick(WebElement el) {
         scrollIntoView(el);
         highlight(el);
         demoSleep(400);
@@ -79,7 +79,7 @@ public class FaqPage extends BasePage {
         demoSleep(800);
     }
 
-    private void clickOpenNewTab(WebElement el) {
+    public void clickOpenNewTab(WebElement el) {
         String main = driver.getWindowHandle();
         safeClick(el);
         demoSleep(1500);
@@ -174,9 +174,9 @@ public class FaqPage extends BasePage {
     }
 
     public void clickExploreNow() {
-        String main = driver.getWindowHandle();
+        // String main = driver.getWindowHandle();
         safeClick(wait.until(ExpectedConditions.elementToBeClickable(exploreNowButton)));
-        demoSleep(1500); // lihat halaman features sebentar
+        demoSleep(1500);
         driver.navigate().back();
         wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
         demoSleep(600);
@@ -188,26 +188,19 @@ public class FaqPage extends BasePage {
 
     // ================= CONTACT FORM =================
     public void fillContactForm() {
-        driver.findElement(lastName).clear();
-        driver.findElement(lastName).sendKeys("Doe");
-        driver.findElement(firstName).clear();
-        driver.findElement(firstName).sendKeys("John");
-        driver.findElement(company).clear();
-        driver.findElement(company).sendKeys("ACME Corp");
-        driver.findElement(country).clear();
-        driver.findElement(country).sendKeys("Indonesia");
-        driver.findElement(email).clear();
-        driver.findElement(email).sendKeys("john.doe@test.com");
-        driver.findElement(phone).clear();
-        driver.findElement(phone).sendKeys("08123456789");
-        driver.findElement(message).clear();
-        driver.findElement(message).sendKeys("Need FAQ help");
+        type(lastName, "Doe");
+        type(firstName, "John");
+        type(company, "ACME Corp");
+        type(country, "Indonesia");
+        type(email, "john.doe@test.com");
+        type(phone, "08123456789");
+        type(message, "Need FAQ help");
 
         WebElement submit = wait.until(ExpectedConditions.presenceOfElementLocated(contactSubmit));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", submit);
         demoSleep(300);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submit);
-        demoSleep(2000); // jeda lihat efek klik
+        demoSleep(2000);
     }
 
     // ================= NEWSLETTER =================
@@ -231,34 +224,31 @@ public class FaqPage extends BasePage {
         demoSleep(1500);
     }
 
-    // ================= FULL FLOW =================
-    public void testAllElementsComplete() {
-        isPageVisible();
-        openInventoryDropdown();
-        clickInventoryButton();
-        openNotificationsDropdown();
-        clickNotificationsButton();
-        openGroupsDropdown();
-        clickGroupsButton();
-        openCustomiseDropdown();
-        clickCustomiseButton();
-        openPluginsDropdown();
-        clickGlpiPluginsButton();
-        openAuthSSODropdown();
-        clickAuthSSOButton();
-        openScimDropdown();
-        clickScimButton();
-        openWebhookDropdown();
-        clickWebhookButton();
-
-        clickViewFullFAQ();
-        clickSeePluginsFaq();
-        fillContactForm();
-        clickViewAllTestimonials();
-
-        clickExploreNow();
-        clickStartNow();
-
-        fillNewsletter("demo@test.com");
+    // ================= TYPE HELPER =================
+    protected void type(By locator, String text) {
+        WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        scrollIntoView(el);
+        highlight(el);
+        el.clear();
+        el.sendKeys(text);
+        demoSleep(400);
     }
+
+    // ================= DROPDOWN + BUTTON HELPER =================
+    /**
+     * Membuka dropdown lalu langsung klik tombol di dalamnya.
+     * Ini mengatasi masalah dropdown yang otomatis menutup saat membuka dropdown
+     * lain.
+     */
+    public void openDropdownAndClickButton(By dropdown, By button) {
+        // Tunggu dropdown clickable
+        WebElement dd = wait.until(ExpectedConditions.elementToBeClickable(dropdown));
+        safeClick(dd); // buka dropdown
+        demoSleep(400); // tunggu animasi dropdown selesai
+
+        // Klik tombol di dalam dropdown
+        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(button));
+        clickOpenNewTab(btn); // gunakan helper clickOpenNewTab supaya tab baru tertutup otomatis
+    }
+
 }

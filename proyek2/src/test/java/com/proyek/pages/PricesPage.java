@@ -8,7 +8,7 @@ import java.util.List;
 
 public class PricesPage extends BasePage {
 
-    private final String pricesUrl = "https://www.glpi-project.org/en/pricing/";
+    public final String pricesUrl = "https://www.glpi-project.org/en/pricing/";
 
     public PricesPage(WebDriver driver) {
         super(driver);
@@ -18,50 +18,44 @@ public class PricesPage extends BasePage {
     public void open() {
         driver.get(pricesUrl);
         acceptCookieIfPresent();
-        demoSleep(1200);
+        waitForPageLoad();
     }
 
     // ================= PAGE =================
-    private final By pageTitle = By.xpath("//h1[contains(.,'Prices')]");
+    public final By pageTitle = By.xpath("//h1[contains(.,'Prices')]");
 
     public boolean isPageVisible() {
         return isVisible(pageTitle);
     }
 
     // ================= SWITCH =================
-    private final By pricingSwitch = By.cssSelector("div.oxel_switcher__toggle");
+    public final By pricingSwitch = By.cssSelector("div.oxel_switcher__toggle");
 
     // ================= BUTTONS =================
-    private final By chooseButtons = By.cssSelector("a[href*='refo=network-']");
-
-    // START NOW PERTAMA (SEBELUM EXPLORE)
-    private final By startNowBeforeExplore = By
+    public final By chooseButtons = By.cssSelector("a[href*='refo=network-']");
+    public final By startNowBeforeExplore = By
             .xpath("(//a[contains(@href,'register.php') and contains(@class,'btn-tertiary')])");
-
-    // START NOW KEDUA (SETELAH EXPLORE)
-    private final By startNowAfterExplore = By
+    public final By startNowAfterExplore = By
             .xpath("(//a[contains(@href,'register.php') and contains(@class,'btn-primary')])");
-
-    private final By browseTestimonials = By.cssSelector("a[href*='youtube.com/playlist']");
-
-    private final By exploreNow = By.cssSelector("section a[href*='/features/']");
+    public final By browseTestimonials = By.cssSelector("a[href*='youtube.com/playlist']");
+    public final By exploreNow = By.cssSelector("section a[href*='/features/']");
 
     // ================= CONTACT FORM =================
-    private final By lastName = By.name("your-name");
-    private final By firstName = By.name("your-first-name");
-    private final By company = By.name("societe");
-    private final By country = By.name("pays");
-    private final By email = By.name("your-email");
-    private final By phone = By.name("your-phone");
-    private final By message = By.name("your-message");
-    private final By contactSubmit = By.cssSelector("input[type='submit'][value='Contact us']");
+    public final By lastName = By.name("your-name");
+    public final By firstName = By.name("your-first-name");
+    public final By company = By.name("societe");
+    public final By country = By.name("pays");
+    public final By email = By.name("your-email");
+    public final By phone = By.name("your-phone");
+    public final By message = By.name("your-message");
+    public final By contactSubmit = By.cssSelector("input[type='submit'][value='Contact us']");
 
     // ================= NEWSLETTER =================
-    private final By newsletterEmail = By.cssSelector("input[name='email']");
-    private final By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name='checkbox-75[]']");
-    private final By newsletterSubmit = By.cssSelector("input.wpcf7-submit");
+    public final By newsletterEmail = By.cssSelector("input[name='email']");
+    public final By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name='checkbox-75[]']");
+    private final By newsletterSubmit = By.xpath("//input[@type='submit' and @value='Subscribe']");
 
-    // ================= UTIL =================
+    // ================= HELPER =================
     private void safeClick(WebElement el) {
         scrollIntoView(el);
         highlight(el);
@@ -69,180 +63,130 @@ public class PricesPage extends BasePage {
         try {
             el.click();
         } catch (Exception e) {
-            ((JavascriptExecutor) driver)
-                    .executeScript("arguments[0].click();", el);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
         }
         demoSleep(800);
     }
 
-    private void clickOpenNewTab(WebElement el) {
+    // ================= CLICK HELPERS =================
+    // Overload 1: klik dengan locator
+    public void clickOpenNewTab(By locator) {
+        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        clickOpenNewTab(el);
+    }
+
+    // Overload 2: klik dengan WebElement
+    public void clickOpenNewTab(WebElement el) {
         String main = driver.getWindowHandle();
         safeClick(el);
 
-        demoSleep(1500);
         for (String win : driver.getWindowHandles()) {
             if (!win.equals(main)) {
                 driver.switchTo().window(win);
-                demoSleep(1000);
+                waitForPageLoad();
                 driver.close();
             }
         }
+
         driver.switchTo().window(main);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
-        demoSleep(600);
+        waitForPageLoad();
+    }
+
+    // Klik tombol di tab yang sama, tidak menunggu URL berubah
+    public void clickSameTab(By locator) {
+        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        safeClick(el);
+        waitForPageLoad(); // pastikan page ready
     }
 
     // ================= ACTIONS =================
     public void togglePricingSwitch() {
-        WebElement toggle = wait.until(
-                ExpectedConditions.elementToBeClickable(pricingSwitch));
-        safeClick(toggle);
+        clickSameTab(pricingSwitch);
     }
 
     public void clickAllChooseButtons() {
-        List<WebElement> buttons = wait.until(
-                ExpectedConditions.presenceOfAllElementsLocatedBy(chooseButtons));
-
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(chooseButtons));
         for (WebElement btn : buttons) {
-            if (btn.isDisplayed()) {
+            if (btn.isDisplayed())
                 clickOpenNewTab(btn);
-            }
         }
     }
 
     public void clickStartNowBeforeExplore() {
-        List<WebElement> buttons = wait.until(
-                ExpectedConditions.presenceOfAllElementsLocatedBy(startNowBeforeExplore));
-
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(startNowBeforeExplore));
         for (WebElement btn : buttons) {
-            if (btn.isDisplayed()) {
+            if (btn.isDisplayed())
                 clickOpenNewTab(btn);
-            }
         }
     }
 
     public void clickStartNowAfterExplore() {
-        List<WebElement> buttons = wait.until(
-                ExpectedConditions.presenceOfAllElementsLocatedBy(startNowAfterExplore));
-
+        List<WebElement> buttons = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(startNowAfterExplore));
         for (WebElement btn : buttons) {
-            if (btn.isDisplayed()) {
+            if (btn.isDisplayed())
                 clickOpenNewTab(btn);
-            }
         }
-    }
-
-    // ================= CONTACT FORM (FIX INTERCEPT) =================
-    public void fillContactForm() {
-
-        WebElement lastNameEl = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(lastName));
-        scrollIntoView(lastNameEl);
-
-        driver.findElement(lastName).clear();
-        driver.findElement(lastName).sendKeys("Doe");
-
-        driver.findElement(firstName).clear();
-        driver.findElement(firstName).sendKeys("John");
-
-        driver.findElement(company).clear();
-        driver.findElement(company).sendKeys("ACME Corp");
-
-        driver.findElement(country).clear();
-        driver.findElement(country).sendKeys("Indonesia");
-
-        driver.findElement(email).clear();
-        driver.findElement(email).sendKeys("john.doe@test.com");
-
-        driver.findElement(phone).clear();
-        driver.findElement(phone).sendKeys("08123456789");
-
-        driver.findElement(message).clear();
-        driver.findElement(message).sendKeys("Need pricing information");
-
-        WebElement submit = wait.until(
-                ExpectedConditions.presenceOfElementLocated(contactSubmit));
-
-        ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].scrollIntoView({block:'center'});", submit);
-        demoSleep(600);
-
-        // HILANGKAN HEADER FIXED YANG NUTUPIN
-        ((JavascriptExecutor) driver).executeScript(
-                "document.querySelector('header, .oxy-header-center')?.style.setProperty('pointer-events','none');");
-
-        demoSleep(300);
-
-        // FORCE CLICK VIA JS (ANTI INTERCEPT)
-        ((JavascriptExecutor) driver)
-                .executeScript("arguments[0].click();", submit);
-
-        demoSleep(1500);
     }
 
     public void openTestimonials() {
-        WebElement btn = wait.until(
-                ExpectedConditions.elementToBeClickable(browseTestimonials));
-        clickOpenNewTab(btn);
+        clickOpenNewTab(browseTestimonials);
     }
 
-    // ================= EXPLORE SAME TAB =================
     public void exploreAndReturn() {
-        String url = driver.getCurrentUrl();
-
-        WebElement btn = wait.until(
-                ExpectedConditions.elementToBeClickable(exploreNow));
-        safeClick(btn);
-
-        demoSleep(1500);
-        driver.navigate().back();
-
-        wait.until(ExpectedConditions.urlToBe(url));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
-        demoSleep(800);
+        clickSameTab(exploreNow);
     }
 
-    public void fillNewsletter(String email) {
-        scrollToFooter();
-        demoSleep(800);
+    public void fillContactForm() {
+        driver.findElement(lastName).clear();
+        driver.findElement(lastName).sendKeys("Doe");
+        driver.findElement(firstName).clear();
+        driver.findElement(firstName).sendKeys("John");
+        driver.findElement(company).clear();
+        driver.findElement(company).sendKeys("ACME Corp");
+        driver.findElement(country).clear();
+        driver.findElement(country).sendKeys("Indonesia");
+        driver.findElement(email).clear();
+        driver.findElement(email).sendKeys("john.doe@test.com");
+        driver.findElement(phone).clear();
+        driver.findElement(phone).sendKeys("08123456789");
+        driver.findElement(message).clear();
+        driver.findElement(message).sendKeys("Need pricing information");
 
+        WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(contactSubmit));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", submit);
+        demoSleep(300);
+        ((JavascriptExecutor) driver).executeScript(
+                "document.querySelector('header, .oxy-header-center')?.style.setProperty('pointer-events','none');");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submit);
+        waitForPageLoad();
+    }
+
+    public void fillNewsletter(String emailStr) {
+        // Isi email
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(newsletterEmail));
-        highlight(emailInput);
         emailInput.clear();
-        emailInput.sendKeys(email);
-        demoSleep(500);
+        emailInput.sendKeys(emailStr);
 
+        // Centang checkbox jika belum dicentang
         WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(newsletterCheckbox));
-        if (!checkbox.isSelected()) {
-            scrollIntoView(checkbox);
-            highlight(checkbox);
-            checkbox.click();
-        }
+        if (!checkbox.isSelected())
+            safeClick(checkbox);
 
-        demoSleep(400);
-        driver.findElement(newsletterSubmit).click();
-        demoSleep(1200);
+        // Klik tombol Subscribe yang spesifik
+        WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(newsletterSubmit));
+        safeClick(submit);
+
+        waitForPageLoad();
     }
 
-    // ================= FULL FLOW =================
-    public void testAllElementsComplete() {
-
-        isPageVisible();
-
-        togglePricingSwitch();
-        clickAllChooseButtons();
-
-        // START NOW PERTAMA
-        clickStartNowBeforeExplore();
-
-        fillContactForm();
-        openTestimonials();
-
-        exploreAndReturn();
-
-        // START NOW KEDUA (SETELAH EXPLORE, TIDAK BALIK TESTIMONIAL)
-        clickStartNowAfterExplore();
-
-        fillNewsletter("demo@test.com");
+    // ================= HELPER =================
+    public void waitForPageLoad() {
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState")
+                .equals("complete"));
     }
+
+    public boolean isMainPage() {
+        return isVisible(pageTitle);
+    }
+
 }

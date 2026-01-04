@@ -16,46 +16,46 @@ public class HomePage extends BasePage {
     // ================= URL =================
     public void open() {
         driver.get(homepageUrl);
+        driver.manage().window().maximize(); // Pastikan layar penuh
         acceptCookieIfPresent();
-        demoSleep(1200);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(heroTitle));
     }
 
-    // ================= HERO =================
+    // ================= LOCATORS =================
     private final By heroTitle = By.tagName("h1");
     private final By getStartedHeroBtn = By.xpath(
-            "//a[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'get started')]");
-
-    // ================= FEATURES =================
+            "(//a[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'get started')])[1]");
     private final By helpdeskCard = By.xpath(
             "//h3[normalize-space()='Helpdesk']/following::a[contains(.,'Get Started')][1]");
     private final By inventoryCard = By.xpath(
             "//h3[contains(normalize-space(),'Inventory')]/following::a[contains(.,'Get Started')][1]");
     private final By financialCard = By.xpath(
             "//h3[contains(normalize-space(),'Financial')]/following::a[contains(.,'Get Started')][1]");
-
-    // ================= CTA =================
     private final By startNowBtn = By.xpath(
             "//a[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'start now')]");
-
-    // ================= TESTIMONIAL & PARTNER =================
     private final By viewTestimonialsBtn = By.xpath(
             "//a[contains(text(),'View All Testimonials') or contains(text(),'View all testimonials')]");
     private final By discoverPartnersBtn = By.xpath(
             "//a[contains(text(),'Discover All') or contains(text(),'Discover all')]");
-
-    // ================= NEWSLETTER =================
     private final By newsletterEmail = By.cssSelector("input[type='email']");
     private final By newsletterSubmit = By.cssSelector("input[type='submit']");
-    // ================= SOCIAL =================
     private final By socialLinks = By.cssSelector("footer a[target='_blank'][href^='http']");
 
     // ================= VISIBILITY =================
     public boolean isHeroVisible() {
-        return isVisible(heroTitle);
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(heroTitle)).isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public boolean isGetStartedHeroVisible() {
-        return isVisible(getStartedHeroBtn);
+        try {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(getStartedHeroBtn)).isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     // ================= ACTIONS =================
@@ -90,98 +90,67 @@ public class HomePage extends BasePage {
     // ================= NEWSLETTER =================
     public void fillNewsletter(String email) {
         scrollToFooter();
-        demoSleep(800);
-
-        // isi email
-        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(newsletterEmail));
+        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(newsletterEmail));
         highlight(emailInput);
         emailInput.clear();
         emailInput.sendKeys(email);
-        demoSleep(600);
 
-        // centang checkbox persetujuan jika belum dicentang
+        // Optional checkbox
         By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name*='checkbox']");
-        try {
-            WebElement checkbox = driver.findElement(newsletterCheckbox);
-            if (!checkbox.isSelected()) {
-                scrollIntoView(checkbox);
-                highlight(checkbox);
-                demoSleep(300);
-                checkbox.click();
-                demoSleep(300);
-            }
-        } catch (NoSuchElementException e) {
-            System.out.println("Checkbox newsletter tidak ditemukan, lanjut submit");
+        List<WebElement> checkboxes = driver.findElements(newsletterCheckbox);
+        if (!checkboxes.isEmpty() && !checkboxes.get(0).isSelected()) {
+            scrollIntoView(checkboxes.get(0));
+            checkboxes.get(0).click();
         }
 
-        // klik submit
         driver.findElement(newsletterSubmit).click();
-        demoSleep(1000);
+        // Tunggu halaman / success message bisa ditambahkan di test
     }
 
     // ================= SOCIAL =================
     public void clickAllSocialMediaLinks() {
         scrollToFooter();
-        demoSleep(800);
-
         String main = driver.getWindowHandle();
-        List<WebElement> links = driver.findElements(socialLinks);
+        List<WebElement> links = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(socialLinks));
 
         for (WebElement link : links) {
-            try {
-                if (link.isDisplayed() && link.isEnabled()) {
-                    scrollIntoView(link);
-                    highlight(link);
-                    demoSleep(600);
-                    link.click();
-                    demoSleep(2000);
-                    closeNewTab(main);
-                }
-            } catch (Exception ignored) {
+            if (link.isDisplayed()) {
+                scrollIntoView(link);
+                highlight(link);
+                link.click();
+                wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+                closeNewTab(main);
             }
         }
-    }
-
-    // ================= FULL DEMO FLOW =================
-    public void testAllElementsComplete() {
-        clickGetStartedHeroAndClose();
-        clickGetStartedHelpdeskAndClose();
-        clickGetStartedInventoryAndClose();
-        clickGetStartedFinancialAndClose();
-        clickViewTestimonialsAndClose();
-        clickDiscoverPartnersAndClose();
-        clickStartNowAndClose();
-
-        fillNewsletter("demo@test.com"); // pastikan ada
-
-        clickAllSocialMediaLinks(); // footer dihapus
     }
 
     // ================= HELPERS =================
     private void clickAndReturn(By locator) {
         String main = driver.getWindowHandle();
-        WebElement el = driver.findElement(locator);
-        scrollIntoView(el);
+        WebElement el = wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+        // scroll ke tengah layar
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", el);
         highlight(el);
-        demoSleep(600);
-        el.click();
-        demoSleep(2000);
+
+        try {
+            el.click();
+        } catch (ElementClickInterceptedException e) {
+            // fallback: paksa klik via JS
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", el);
+        }
+
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
         closeNewTab(main);
     }
 
     private void closeNewTab(String main) {
-        try {
-            for (String win : driver.getWindowHandles()) {
-                if (!win.equals(main)) {
-                    driver.switchTo().window(win);
-                    demoSleep(1500);
-                    driver.close();
-                }
+        for (String win : driver.getWindowHandles()) {
+            if (!win.equals(main)) {
+                driver.switchTo().window(win);
+                driver.close();
             }
-            driver.switchTo().window(main);
-            demoSleep(800);
-        } catch (Exception e) {
-            driver.switchTo().window(main);
         }
+        driver.switchTo().window(main);
     }
 }

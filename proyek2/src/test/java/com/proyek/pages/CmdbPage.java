@@ -18,17 +18,13 @@ public class CmdbPage extends BasePage {
     public void open() {
         driver.get(cmdbUrl);
         acceptCookieIfPresent();
-        demoSleep(1200);
+        waitForPageLoad();
     }
 
-    // ================= HERO =================
+    // ================= LOCATORS =================
     private final By heroTitle = By.tagName("h1");
-
-    // ================= NEWSLETTER =================
     private final By newsletterEmail = By.cssSelector("input[type='email']");
     private final By newsletterSubmit = By.cssSelector("input[type='submit']");
-
-    // ================= SOCIAL =================
     private final By socialLinks = By.cssSelector("footer a[target='_blank'][href^='http']");
 
     // ================= VISIBILITY =================
@@ -36,68 +32,25 @@ public class CmdbPage extends BasePage {
         return isVisible(heroTitle);
     }
 
-    // ================= ACTIONS DINAMIS =================
+    // ================= BUTTON ACTIONS =================
     public void clickButtonByVisibleText(String textContains) {
-        String mainWindow = driver.getWindowHandle();
-        try {
-            WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(
-                    By.xpath("//a[contains(normalize-space(.),'" + textContains + "')]")));
-            scrollIntoView(btn);
-            highlight(btn);
-            demoSleep(600);
-            try {
-                btn.click();
-            } catch (Exception e) {
-                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
-            }
-            demoSleep(2000);
-            closeNewTab(mainWindow);
-        } catch (TimeoutException e) {
-            System.out.println("Button not found: " + textContains);
-        }
+        clickButtonGeneric(By.xpath("//a[contains(normalize-space(.),'" + textContains + "')]"));
     }
 
-    // klik tombol terakhir dengan teks tertentu (untuk Start Incident Management)
     public void clickLastButtonByText(String textContains) {
-        String mainWindow = driver.getWindowHandle();
-        try {
-            List<WebElement> buttons = driver.findElements(
-                    By.xpath("//a[contains(normalize-space(.),'" + textContains + "')]"));
-            if (!buttons.isEmpty()) {
-                WebElement btn = buttons.get(buttons.size() - 1); // ambil tombol terakhir
-                scrollIntoView(btn);
-                highlight(btn);
-                demoSleep(600);
-                try {
-                    btn.click();
-                } catch (Exception e) {
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
-                }
-                demoSleep(2000);
-                closeNewTab(mainWindow);
-            }
-        } catch (Exception e) {
-            System.out.println("Button not found: " + textContains);
+        List<WebElement> buttons = driver.findElements(
+                By.xpath("//a[contains(normalize-space(.),'" + textContains + "')]"));
+        if (!buttons.isEmpty()) {
+            clickElementWithFallback(buttons.get(buttons.size() - 1));
         }
     }
 
-    // klik semua tombol "Access your GLPI instance"
-    public void clickAllAccessGlpiInstances() {
-        String mainWindow = driver.getWindowHandle();
+    // Klik satu representative tombol "Access your GLPI instance"
+    public void clickRepresentativeAccessInstance() {
         List<WebElement> instanceBtns = driver
                 .findElements(By.xpath("//a[contains(text(),'Access your GLPI instance')]"));
-        for (WebElement btn : instanceBtns) {
-            try {
-                if (btn.isDisplayed() && btn.isEnabled()) {
-                    scrollIntoView(btn);
-                    highlight(btn);
-                    demoSleep(600);
-                    btn.click();
-                    demoSleep(2000);
-                    closeNewTab(mainWindow);
-                }
-            } catch (Exception ignored) {
-            }
+        if (!instanceBtns.isEmpty()) {
+            clickElementWithFallback(instanceBtns.get(0)); // cukup tombol pertama
         }
     }
 
@@ -108,32 +61,18 @@ public class CmdbPage extends BasePage {
             WebElement iframe = wait.until(ExpectedConditions.presenceOfElementLocated(
                     By.cssSelector("iframe[title*='Inventaire']")));
             driver.switchTo().frame(iframe);
-            demoSleep(800);
 
             while (true) {
                 List<WebElement> buttons = driver.findElements(By.tagName("a"));
-
-                // filter tombol yang bisa diklik
-                WebElement nextBtn = null;
-                for (WebElement btn : buttons) {
-                    if (btn.isDisplayed() && btn.isEnabled()) {
-                        nextBtn = btn;
-                        break;
-                    }
-                }
+                WebElement nextBtn = buttons.stream()
+                        .filter(b -> b.isDisplayed() && b.isEnabled())
+                        .findFirst()
+                        .orElse(null);
 
                 if (nextBtn == null)
-                    break; // ga ada tombol lagi, keluar loop
+                    break;
 
-                scrollIntoView(nextBtn);
-                highlight(nextBtn);
-                demoSleep(500);
-                try {
-                    nextBtn.click();
-                } catch (Exception e) {
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextBtn);
-                }
-                demoSleep(1000); // tunggu step berikutnya muncul
+                clickElementWithFallback(nextBtn);
             }
 
         } catch (TimeoutException e) {
@@ -147,68 +86,64 @@ public class CmdbPage extends BasePage {
     // ================= NEWSLETTER =================
     public void fillNewsletter(String email) {
         scrollToFooter();
-        demoSleep(800);
 
-        // isi email
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(newsletterEmail));
         highlight(emailInput);
         emailInput.clear();
         emailInput.sendKeys(email);
-        demoSleep(600);
 
-        // centang checkbox persetujuan jika belum dicentang
+        // Checkbox optional
         By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name*='checkbox']");
         try {
             WebElement checkbox = driver.findElement(newsletterCheckbox);
             if (!checkbox.isSelected()) {
                 scrollIntoView(checkbox);
                 highlight(checkbox);
-                demoSleep(300);
                 checkbox.click();
-                demoSleep(300);
             }
-        } catch (NoSuchElementException e) {
-            System.out.println("Checkbox newsletter tidak ditemukan, lanjut submit");
+        } catch (NoSuchElementException ignored) {
         }
 
-        // klik submit
         driver.findElement(newsletterSubmit).click();
-        demoSleep(1000);
+        waitForPageLoad();
     }
 
     // ================= SOCIAL =================
     public void clickAllSocialMediaLinks() {
         scrollToFooter();
-        demoSleep(800);
         String main = driver.getWindowHandle();
         List<WebElement> links = driver.findElements(socialLinks);
         for (WebElement link : links) {
-            try {
-                if (link.isDisplayed() && link.isEnabled()) {
-                    scrollIntoView(link);
-                    highlight(link);
-                    demoSleep(600);
-                    link.click();
-                    demoSleep(2000);
-                    closeNewTab(main);
-                }
-            } catch (Exception ignored) {
+            if (link.isDisplayed() && link.isEnabled()) {
+                clickElementWithFallback(link);
+                closeNewTab(main);
             }
         }
     }
 
-    // ================= FULL DEMO FLOW =================
+    // ================= FULL FLOW DEMO =================
     public void testAllElementsComplete() {
-        // urutan sesuai permintaan
-        clickButtonByVisibleText("Start managing your first asset"); // hero top
-        clickButtonByVisibleText("Start Now"); // Take Inventory Start Now
-        clickAllAccessGlpiInstances(); // access GLPI instances
-        clickTutorialIframe(); // tutorial iframe step by step
+        clickButtonByVisibleText("Start managing your first asset"); // hero
+        clickButtonByVisibleText("Start Now"); // inventory
+        clickRepresentativeAccessInstance(); // GLPI instance
+        clickTutorialIframe(); // tutorial
         clickButtonByVisibleText("View All Testimonials"); // testimonial
         clickButtonByVisibleText("Explore Now"); // explore features
-        clickLastButtonByText("Start Now"); // Start Incident Management (tombol bawah)
+        clickLastButtonByText("Start Now"); // start incident management
         fillNewsletter("demo@test.com"); // newsletter
         clickAllSocialMediaLinks(); // social
+    }
+
+    // ================= HELPERS =================
+    private void clickElementWithFallback(WebElement element) {
+        scrollIntoView(element);
+        highlight(element);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        } catch (ElementClickInterceptedException | TimeoutException e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
+        waitForPageLoad();
     }
 
     // ================= HELPERS =================
@@ -217,14 +152,24 @@ public class CmdbPage extends BasePage {
             for (String win : driver.getWindowHandles()) {
                 if (!win.equals(main)) {
                     driver.switchTo().window(win);
-                    demoSleep(1500);
+                    // optional wait atau demoSleep
                     driver.close();
                 }
             }
             driver.switchTo().window(main);
-            demoSleep(800);
         } catch (Exception e) {
             driver.switchTo().window(main);
         }
     }
+
+    private void clickButtonGeneric(By locator) {
+        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        clickElementWithFallback(btn);
+    }
+
+    private void waitForPageLoad() {
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver)
+                .executeScript("return document.readyState").equals("complete"));
+    }
+
 }
