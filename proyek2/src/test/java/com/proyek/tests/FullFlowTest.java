@@ -1,15 +1,9 @@
 package com.proyek.tests;
 
-import com.proyek.base.BaseTest;
-import com.proyek.pages.HomePage;
-import com.proyek.pages.CmdbPage;
-import com.proyek.pages.HelpdeskPage;
-import com.proyek.pages.FinancePage;
-import com.proyek.pages.AdministrationPage;
-import com.proyek.pages.PricesPage;
-import com.proyek.pages.DownloadPage;
-import com.proyek.pages.FaqPage;
 import org.junit.jupiter.api.Test;
+
+import com.proyek.base.BaseTest;
+import com.proyek.pages.TrainingPage;
 
 public class FullFlowTest extends BaseTest {
 
@@ -51,8 +45,13 @@ public class FullFlowTest extends BaseTest {
         // download.testAllElementsComplete();
 
         // 8️⃣ FAQ page
-        FaqPage faq = new FaqPage(driver);
-        faq.open();
-        faq.testAllElementsComplete();
+        // FaqPage faq = new FaqPage(driver);
+        // faq.open();
+        // faq.testAllElementsComplete();
+
+        // 9️⃣ Training page
+        TrainingPage training = new TrainingPage(driver);
+        training.open();
+        training.testAllElementsComplete();
     }
 }
