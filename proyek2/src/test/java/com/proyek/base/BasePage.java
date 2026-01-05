@@ -1,10 +1,13 @@
 package com.proyek.base;
 
-import org.openqa.selenium.*;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class BasePage {
 
@@ -13,6 +16,9 @@ public class BasePage {
 
     // MODE DEMO (true = kelihatan pelan, false = ngebut)
     protected boolean DEMO_MODE = true;
+    
+    // Delay multiplier (1.0 = normal, 2.0 = 2x lebih lambat)
+    protected double DELAY_MULTIPLIER = 1.5;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -94,7 +100,8 @@ public class BasePage {
     protected void demoSleep(int ms) {
         if (DEMO_MODE) {
             try {
-                Thread.sleep(ms);
+                // Delay dengan multiplier untuk memperlambat test
+                Thread.sleep((long)(ms * DELAY_MULTIPLIER));
             } catch (InterruptedException ignored) {
             }
         }
