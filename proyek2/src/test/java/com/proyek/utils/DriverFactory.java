@@ -2,6 +2,7 @@ package com.proyek.utils;
 
 import java.time.Duration;
 
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,11 +15,11 @@ public class DriverFactory {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
-
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         // Cek apakah Brave Browser terinstall
         String bravePath = "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe";
         java.io.File braveFile = new java.io.File(bravePath);
-        
+
         if (braveFile.exists()) {
             options.setBinary(bravePath);
             System.out.println("Using Brave Browser");
