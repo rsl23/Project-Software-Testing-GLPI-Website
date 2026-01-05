@@ -1,5 +1,6 @@
 com\proyek\tests\HomePageTest.class
 com\proyek\pages\DownloadPage.class
+com\proyek\pages\RegistrationPage.class
 com\proyek\tests\FinancePageTest.class
 com\proyek\utils\DriverFactory.class
 com\proyek\pages\HelpdeskPage.class
@@ -21,6 +22,7 @@ com\proyek\pages\HomePage.class
 com\proyek\tests\CmdbPageTest.class
 com\proyek\pages\AboutUsPage.class
 com\proyek\tests\CommunityPageTest.class
+com\proyek\tests\RegistrationPageTest.class
 com\proyek\tests\RndPageTest.class
 com\proyek\pages\FaqPage.class
 com\proyek\utils\WaitUntil.class

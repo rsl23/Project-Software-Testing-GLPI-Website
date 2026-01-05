@@ -13,6 +13,7 @@ D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\t
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\HomePage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\PartnerPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\PricesPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\RegistrationPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\RndPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\TrainingPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\AboutUsPageTest.java
@@ -28,6 +29,7 @@ D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\t
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\HomePageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\PartnerPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\PricesPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\RegistrationPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\RndPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\TrainingPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\utils\ConfigReader.java
