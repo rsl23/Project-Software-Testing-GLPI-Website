@@ -1,4 +1,4 @@
-package com.proyek.pages;
+    package com.proyek.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
