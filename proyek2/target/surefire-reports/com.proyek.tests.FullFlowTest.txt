@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.proyek.tests.FullFlowTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 34.08 s -- in com.proyek.tests.FullFlowTest

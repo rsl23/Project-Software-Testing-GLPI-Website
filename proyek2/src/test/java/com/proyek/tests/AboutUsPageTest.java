@@ -2,9 +2,12 @@ package com.proyek.tests;
 
 import com.proyek.base.BaseTest;
 import com.proyek.pages.AboutUsPage;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Epic("GLPI Website Testing")
+@Feature("About Us Page")
 public class AboutUsPageTest extends BaseTest {
 
     private AboutUsPage aboutUsPage;
@@ -17,12 +20,18 @@ public class AboutUsPageTest extends BaseTest {
 
     @Test
     @DisplayName("Check About Us headline is visible")
+    @Description("Verify that the About Us headline is visible on the page")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Headline Verification")
     public void testHeadlineVisible() {
         assertTrue(aboutUsPage.isHeadlineVisible(), "About Us headline should be visible");
     }
 
     @Test
     @DisplayName("Check Discover our Jobs button is visible and works")
+    @Description("Verify that the Discover our Jobs button is visible and opens the careers page in a new tab")
+    @Severity(SeverityLevel.NORMAL)
+    @Story("Button Navigation")
     public void testDiscoverJobsButton() {
         assertTrue(aboutUsPage.isDiscoverJobsButtonVisible(), "Discover our jobs button should be visible");
 

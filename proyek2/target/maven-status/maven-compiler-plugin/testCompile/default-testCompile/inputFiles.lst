@@ -1,15 +1,35 @@
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\base\BasePage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\base\BaseTest.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\AdministrationPage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\CmdbPage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\DownloadPage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\FaqPage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\FinancePage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\HelpdeskPage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\HomePage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\PricesPage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\TrainingPage.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\FullFlowTest.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\utils\ConfigReader.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\utils\DriverFactory.java
-C:\Kuliah\proyek\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\utils\WaitUntil.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\base\BasePage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\base\BaseTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\AboutUsPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\AdministrationPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\BlogPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\CmdbPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\CommunityPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\CustomerPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\DownloadPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\FaqPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\FinancePage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\HelpdeskPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\HomePage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\PartnerPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\PricesPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\RndPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\TrainingPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\AboutUsPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\AdministrationPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\BlogPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\CmdbPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\CommunityPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\CustomerPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\DownloadPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\FaqPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\FinancePageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\HelpdeskPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\HomePageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\PartnerPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\PricesPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\RndPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\TrainingPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\utils\ConfigReader.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\utils\DriverFactory.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\utils\WaitUntil.java
