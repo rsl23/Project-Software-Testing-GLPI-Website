@@ -192,23 +192,26 @@ public class MyAccount extends BasePage {
         demoSleep(500);
     }
 
-    public void selectCountry(String countryValue) {
+    public void selectCountry(String countryText) {
+        // Klik dropdown Select2 supaya list muncul
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(countryDropdownSelection));
         scrollIntoView(dropdown);
         highlight(dropdown);
         demoSleep(500);
-        
+        dropdown.click();
+        demoSleep(500);
+
         try {
-            // Click to open Select2 dropdown
-            dropdown.click();
-            demoSleep(500);
-            
-            // Use JavaScript to set value directly on hidden select element
-            ((JavascriptExecutor) driver).executeScript(
-                "arguments[0].value = arguments[1]; $(arguments[0]).trigger('change');", 
-                driver.findElement(countryDropdown), 
-                countryValue
-            );
+            // Gunakan JavaScript untuk memilih option dari <select> tersembunyi
+            String script = "var select = document.getElementById('selectcountry_id');" +
+                    "for(var i=0;i<select.options.length;i++) {" +
+                    "  if(select.options[i].text.trim() === arguments[0]) {" +
+                    "    select.selectedIndex = i;" +
+                    "    $(select).trigger('change');" +
+                    "    break;" +
+                    "  }" +
+                    "}";
+            ((JavascriptExecutor) driver).executeScript(script, countryText);
             demoSleep(500);
         } catch (Exception e) {
             System.out.println("Country selection error: " + e.getMessage());
@@ -220,7 +223,7 @@ public class MyAccount extends BasePage {
         scrollIntoView(checkbox);
         highlight(checkbox);
         demoSleep(500);
-        
+
         try {
             checkbox.click();
         } catch (Exception e) {
@@ -235,7 +238,7 @@ public class MyAccount extends BasePage {
             scrollIntoView(checkbox);
             highlight(checkbox);
             demoSleep(500);
-            
+
             try {
                 checkbox.click();
             } catch (Exception e) {
@@ -251,7 +254,7 @@ public class MyAccount extends BasePage {
             scrollIntoView(checkbox);
             highlight(checkbox);
             demoSleep(500);
-            
+
             try {
                 checkbox.click();
             } catch (Exception e) {
@@ -284,7 +287,7 @@ public class MyAccount extends BasePage {
         scrollIntoView(button);
         highlight(button);
         demoSleep(500);
-        
+
         try {
             button.click();
         } catch (Exception e) {
@@ -344,7 +347,7 @@ public class MyAccount extends BasePage {
         scrollIntoView(checkbox);
         highlight(checkbox);
         demoSleep(500);
-        
+
         try {
             checkbox.click();
         } catch (Exception e) {
@@ -359,7 +362,7 @@ public class MyAccount extends BasePage {
             scrollIntoView(checkbox);
             highlight(checkbox);
             demoSleep(500);
-            
+
             try {
                 checkbox.click();
             } catch (Exception e) {
@@ -375,7 +378,7 @@ public class MyAccount extends BasePage {
             scrollIntoView(checkbox);
             highlight(checkbox);
             demoSleep(500);
-            
+
             try {
                 checkbox.click();
             } catch (Exception e) {
@@ -390,7 +393,7 @@ public class MyAccount extends BasePage {
         scrollIntoView(button);
         highlight(button);
         demoSleep(500);
-        
+
         try {
             button.click();
         } catch (Exception e) {
@@ -423,7 +426,7 @@ public class MyAccount extends BasePage {
         scrollIntoView(button);
         highlight(button);
         demoSleep(500);
-        
+
         try {
             button.click();
         } catch (Exception e) {
@@ -438,7 +441,7 @@ public class MyAccount extends BasePage {
         scrollIntoView(link);
         highlight(link);
         demoSleep(500);
-        
+
         try {
             link.click();
         } catch (Exception e) {
@@ -447,23 +450,30 @@ public class MyAccount extends BasePage {
         demoSleep(1000);
     }
 
-    public void clickDeleteAccount() {
+    public WebElement clickDeleteAccount() {
+        // Klik link Delete Account
         WebElement link = wait.until(ExpectedConditions.elementToBeClickable(deleteAccountLink));
         scrollIntoView(link);
         highlight(link);
         demoSleep(500);
-        
+
         try {
             link.click();
         } catch (Exception e) {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", link);
         }
-        demoSleep(1000);
+        demoSleep(500);
+
+        // Tunggu munculnya pesan info HTML
+        By infoMessageLocator = By.cssSelector("div#deletemyaccountarea p.opacitymedium.error");
+        WebElement infoMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(infoMessageLocator));
+
+        return infoMessage; // bisa dipakai di test untuk assert
     }
 
     // ================= COMPLETE FORMS =================
-    public void fillCompleteOrganizationForm(String orgName, String address, String town, String zip, 
-                                             String stateOrCounty, String country, String profid) {
+    public void fillCompleteOrganizationForm(String orgName, String address, String town, String zip,
+            String stateOrCounty, String country, String profid) {
         fillOrgName(orgName);
         fillAddress(address);
         fillTown(town);
@@ -473,8 +483,8 @@ public class MyAccount extends BasePage {
         fillProfid(profid);
     }
 
-    public void fillCompleteContactForm(String email, String phone, String firstName, 
-                                        String lastName, String emailCc) {
+    public void fillCompleteContactForm(String email, String phone, String firstName,
+            String lastName, String emailCc) {
         fillEmail(email);
         fillPhone(phone);
         fillFirstName(firstName);
@@ -500,4 +510,36 @@ public class MyAccount extends BasePage {
     public boolean isOnMyAccountPage() {
         return getCurrentUrl().contains("mode=myaccount");
     }
+
+    // Cek success message muncul di .jnotify-container
+    public boolean isOrgSaveSuccessVisible() {
+        try {
+            WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector(".jnotify-container")));
+            return msg.isDisplayed() && msg.getText().contains("Record saved"); // opsional cek text
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isContactSaveSuccessVisible() {
+        try {
+            WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector(".jnotify-container")));
+            return msg.isDisplayed() && msg.getText().contains("Record saved"); // opsional cek text
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isChangePasswordSuccessVisible() {
+        try {
+            WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector(".jnotify-container")));
+            return msg.isDisplayed() && msg.getText().contains("Password modified"); // opsional cek text
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
