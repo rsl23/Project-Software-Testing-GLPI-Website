@@ -24,11 +24,17 @@ public class DashboardPage extends BasePage {
     }
 
     // ================= LOCATORS =================
-    private final By addPaymentModeBtn = By.xpath("//a[contains(@href, 'mode=registerpaymentmode') and contains(@class, 'btn-warning')]");
-    private final By goToApplicationBtn = By.xpath("//a[contains(@href, 'glpi-network.cloud') and contains(@class, 'btn-primary')]");
+    private final By addPaymentModeBtn = By
+            .xpath("//a[contains(@href, 'mode=registerpaymentmode') and contains(@class, 'btn-warning')]");
+    private final By goToApplicationBtn = By
+            .xpath("//a[contains(@href, 'glpi-network.cloud') and contains(@class, 'btn-primary')]");
     private final By seeInstancesBtn = By.xpath("//a[contains(@href, 'mode=instances')]");
     private final By seeProfileBtn = By.xpath("//a[contains(@href, 'mode=myaccount')]");
     private final By seeBillingBtn = By.xpath("//a[contains(@href, 'mode=billing')]");
+
+    private final By profileDropdown = By.cssSelector("a.nav-link.dropdown-toggle[href^='#socid']");
+    private final By myAccountMenuItem = By
+            .xpath("//a[contains(@href, 'mode=myaccount') and contains(text(),'My account')]");
 
     // ================= VISIBILITY =================
     public boolean isAddPaymentModeBtnVisible() {
@@ -44,6 +50,11 @@ public class DashboardPage extends BasePage {
     }
 
     public boolean isSeeProfileBtnVisible() {
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(profileDropdown));
+        scrollIntoView(dropdown);
+        highlight(dropdown);
+        dropdown.click();
+        demoSleep(500);
         return isVisible(seeProfileBtn);
     }
 
@@ -57,7 +68,7 @@ public class DashboardPage extends BasePage {
         scrollIntoView(button);
         highlight(button);
         demoSleep(500);
-        
+
         try {
             button.click();
         } catch (Exception e) {
@@ -72,7 +83,7 @@ public class DashboardPage extends BasePage {
         scrollIntoView(button);
         highlight(button);
         demoSleep(500);
-        
+
         try {
             button.click();
         } catch (Exception e) {
@@ -87,7 +98,7 @@ public class DashboardPage extends BasePage {
         scrollIntoView(button);
         highlight(button);
         demoSleep(500);
-        
+
         try {
             button.click();
         } catch (Exception e) {
@@ -98,16 +109,22 @@ public class DashboardPage extends BasePage {
     }
 
     public void clickSeeProfile() {
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(seeProfileBtn));
-        scrollIntoView(button);
-        highlight(button);
+        // 1️⃣ klik dropdown dulu
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(profileDropdown));
+        scrollIntoView(dropdown);
+        highlight(dropdown);
+        dropdown.click();
         demoSleep(500);
-        
+
+        // 2️⃣ klik menu item setelah dropdown terbuka
+        WebElement menuItem = wait.until(ExpectedConditions.elementToBeClickable(myAccountMenuItem));
+        scrollIntoView(menuItem);
+        highlight(menuItem);
+
         try {
-            button.click();
+            menuItem.click();
         } catch (Exception e) {
-            // Fallback to JavaScript click if regular click fails
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", menuItem);
         }
         demoSleep(1000);
     }
@@ -117,7 +134,7 @@ public class DashboardPage extends BasePage {
         scrollIntoView(button);
         highlight(button);
         demoSleep(500);
-        
+
         try {
             button.click();
         } catch (Exception e) {
@@ -139,6 +156,11 @@ public class DashboardPage extends BasePage {
     }
 
     public boolean isOnDashboardPage() {
+        return getCurrentUrl().contains("mainmenu=home");
+    }
+
+    public boolean isOnDashboardPageModeDashboard() {
         return getCurrentUrl().contains("mode=dashboard");
     }
+
 }
