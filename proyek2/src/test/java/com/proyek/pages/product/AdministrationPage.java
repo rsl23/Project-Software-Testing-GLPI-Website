@@ -148,13 +148,13 @@ public class AdministrationPage extends BasePage {
         clickOpenNewTab(startNow1);
     }
 
-    public void clickStartNow2() {
-        clickOpenNewTab(startNow2);
-    }
+    // public void clickStartNow2() {
+    // clickOpenNewTab(startNow2);
+    // }
 
-    public void clickStartNow3() {
-        clickOpenNewTab(startNow3);
-    }
+    // public void clickStartNow3() {
+    // clickOpenNewTab(startNow3);
+    // }
 
     public void clickStartNow4() {
         clickOpenNewTab(startNow4);
@@ -169,4 +169,3 @@ public class AdministrationPage extends BasePage {
     }
 
 }
-
