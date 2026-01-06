@@ -34,7 +34,7 @@ public class RegistrationPageTest extends BaseTest {
     @Story("User Registration Journey")
     public void testCompleteRegistrationFlow() {
         // Step 1: Fill Email
-        registrationPage.fillUsername("testdemo22@gmail.com");
+        registrationPage.fillUsername("testdemo222122@gmail.com");
         
         // Step 2: Fill Company Name
         registrationPage.fillOrgName("ISTTS");
@@ -49,7 +49,7 @@ public class RegistrationPageTest extends BaseTest {
         registrationPage.selectCountry("Indonesia");
         
         // Step 6: Fill Application Address (subdomain)
-        registrationPage.fillSubdomain("projectsoftware-testing22");
+        registrationPage.fillSubdomain("projectsoftware-testing222122");
         
         // Step 7: Select TLD (.sg1.glpi-network.cloud - Singapore)
         registrationPage.selectTld(".sg1.glpi-network.cloud");
@@ -57,12 +57,14 @@ public class RegistrationPageTest extends BaseTest {
         // Step 8: Click Sign Me Up button
         registrationPage.clickSubmit();
         
-        // Verification: Form submission completed successfully
-        // Note: Actual registration blocked by reCAPTCHA in production
-        // Test verifies complete flow can be executed without errors
+        // Verification: Wait for redirect to welcome page
+        // Registration processing takes time (can take up to 60 seconds)
+        registrationPage.waitForWelcomePageRedirect();
+        
+        // Verify we're on the welcome page with welcomecid parameter
         String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl.contains("glpi-network.cloud"), 
-            "Registration flow completed - still on registration page as expected (reCAPTCHA present)");
+        assertTrue(currentUrl.contains("myaccount.glpi-network.cloud/index.php?welcomecid="), 
+            "Should be on welcome page after successful registration. Current URL: " + currentUrl);
     }
 }
 

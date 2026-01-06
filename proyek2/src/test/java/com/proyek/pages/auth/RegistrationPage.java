@@ -1,7 +1,15 @@
 package com.proyek.pages.auth;
 
-import org.openqa.selenium.*;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.proyek.base.BasePage;
 
@@ -25,8 +33,10 @@ public class RegistrationPage extends BasePage {
     private final By orgNameField = By.id("orgName");
     private final By passwordField = By.id("password");
     private final By password2Field = By.id("password2");
+    private final By countrySelect = By.id("selectcountry"); // Hidden select element
     private final By countryDropdown = By.id("select2-selectcountry-container");
     private final By sldAndSubdomainField = By.id("sldAndSubdomain");
+    private final By tldSelect = By.id("tldid"); // Hidden select element
     private final By tldDropdown = By.id("select2-tldid-container");
     private final By submitButton = By.id("newinstance");
 
@@ -159,6 +169,20 @@ public class RegistrationPage extends BasePage {
             return driver.findElement(recaptcha).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
+        }
+    }
+
+    public void waitForWelcomePageRedirect() {
+        try {
+            System.out.println("Waiting for registration to process and redirect...");
+            // Wait up to 60 seconds for redirect to welcome page
+            // Registration processing takes time (form validation, account creation, etc)
+            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(150));
+            longWait.until(ExpectedConditions.urlContains("index.php?welcomecid="));
+            System.out.println("Successfully redirected to: " + driver.getCurrentUrl());
+        } catch (TimeoutException e) {
+            System.out.println("Timeout waiting for redirect. Current URL: " + driver.getCurrentUrl());
+            throw new RuntimeException("Registration did not complete within 60 seconds", e);
         }
     }
 

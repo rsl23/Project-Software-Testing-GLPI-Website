@@ -1,4 +1,4 @@
-# Created at 2026-01-05T23:33:37.634
+# Created at 2026-01-06T14:09:25.448
 Boot Manifest-JAR contains absolute paths in classpath 'D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\target\test-classes'
 Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
 'other' has different root
