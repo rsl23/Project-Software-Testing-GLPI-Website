@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.CustomerPage;
+import com.proyek.pages.company.CustomerPage;
 import com.proyek.base.BaseTest;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
@@ -69,3 +69,6 @@ public class CustomerPageTest extends BaseTest {
                 "Youtube Channel URL should be correct");
     }
 }
+
+
+

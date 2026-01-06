@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.CmdbPage;
+import com.proyek.pages.product.CmdbPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -82,3 +82,6 @@ public class CmdbPageTest {
         assertEquals(main, driver.getWindowHandle());
     }
 }
+
+
+

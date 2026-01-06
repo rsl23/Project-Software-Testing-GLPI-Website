@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.PricesPage;
+import com.proyek.pages.pricing.PricesPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -114,3 +114,6 @@ public class PricesPageTest {
         assertEquals(email, emailInput.getAttribute("value"), "Email newsletter tidak sesuai!");
     }
 }
+
+
+

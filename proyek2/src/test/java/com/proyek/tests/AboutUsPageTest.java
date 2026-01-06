@@ -1,7 +1,7 @@
 package com.proyek.tests;
 
 import com.proyek.base.BaseTest;
-import com.proyek.pages.AboutUsPage;
+import com.proyek.pages.company.AboutUsPage;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,3 +51,6 @@ public class AboutUsPageTest extends BaseTest {
         driver.switchTo().window(mainWindow);
     }
 }
+
+
+

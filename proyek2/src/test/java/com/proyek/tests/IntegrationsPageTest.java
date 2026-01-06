@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.IntegrationsPage;
+import com.proyek.pages.product.IntegrationsPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -87,3 +87,6 @@ public class IntegrationsPageTest {
     }
 
 }
+
+
+

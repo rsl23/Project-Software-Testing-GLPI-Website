@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.CommunityPage;
+import com.proyek.pages.resources.CommunityPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -99,3 +99,6 @@ public class CommunityPageTest {
         }
     }
 }
+
+
+

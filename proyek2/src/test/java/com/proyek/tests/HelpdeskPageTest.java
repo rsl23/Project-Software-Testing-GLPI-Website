@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.HelpdeskPage;
+import com.proyek.pages.product.HelpdeskPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -107,3 +107,6 @@ public class HelpdeskPageTest {
         assertEquals(main, driver.getWindowHandle());
     }
 }
+
+
+

@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.FeaturesPage;
+import com.proyek.pages.product.FeaturesPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -106,3 +106,6 @@ public class FeaturesPageTest {
                 "Isi accordion Inventory tidak muncul setelah accordion dibuka");
     }
 }
+
+
+

@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.BlogPage;
+import com.proyek.pages.resources.BlogPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -112,3 +112,6 @@ public class BlogPageTest {
     }
 
 }
+
+
+

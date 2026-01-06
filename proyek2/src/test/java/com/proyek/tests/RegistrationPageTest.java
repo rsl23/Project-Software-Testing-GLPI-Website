@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.proyek.base.BaseTest;
-import com.proyek.pages.RegistrationPage;
+import com.proyek.pages.auth.RegistrationPage;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -65,3 +65,6 @@ public class RegistrationPageTest extends BaseTest {
             "Registration flow completed - still on registration page as expected (reCAPTCHA present)");
     }
 }
+
+
+

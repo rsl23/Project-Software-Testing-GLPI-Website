@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.FaqPage;
+import com.proyek.pages.resources.FaqPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -98,3 +98,6 @@ public class FaqPageTest {
         assertTrue(true, "Newsletter submitted"); // placeholder
     }
 }
+
+
+

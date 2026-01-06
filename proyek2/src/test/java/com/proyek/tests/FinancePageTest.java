@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.FinancePage;
+import com.proyek.pages.product.FinancePage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -130,3 +130,6 @@ public class FinancePageTest {
                 "Halaman tidak tetap di Finance page setelah submit newsletter");
     }
 }
+
+
+

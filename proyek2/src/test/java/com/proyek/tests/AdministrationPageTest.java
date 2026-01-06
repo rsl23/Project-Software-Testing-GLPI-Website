@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.AdministrationPage;
+import com.proyek.pages.product.AdministrationPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -113,3 +113,6 @@ public class AdministrationPageTest {
         assertEquals(email, emailInput.getAttribute("value"), "Email tidak sesuai!");
     }
 }
+
+
+

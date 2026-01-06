@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.WebDriver;
 
-import com.proyek.pages.TrainingPage;
+import com.proyek.pages.resources.TrainingPage;
 
 public class TrainingPageTest {
 
@@ -69,3 +69,6 @@ public class TrainingPageTest {
         assertTrue(downloaded, "PDF file was not downloaded successfully");
     }
 }
+
+
+

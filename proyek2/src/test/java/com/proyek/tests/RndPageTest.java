@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.RndPage;
+import com.proyek.pages.company.RndPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -83,3 +83,6 @@ public class RndPageTest {
     }
 
 }
+
+
+

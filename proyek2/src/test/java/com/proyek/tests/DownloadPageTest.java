@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.DownloadPage;
+import com.proyek.pages.resources.DownloadPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -121,3 +121,6 @@ public class DownloadPageTest {
         assertEquals(email, emailInput.getAttribute("value"), "Email newsletter tidak sesuai!");
     }
 }
+
+
+

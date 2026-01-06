@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.FooterPage;
+import com.proyek.pages.common.FooterPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -49,3 +49,6 @@ public class FooterTest {
         }
     }
 }
+
+
+

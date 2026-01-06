@@ -1,6 +1,6 @@
 package com.proyek.tests;
 
-import com.proyek.pages.HeaderPage;
+import com.proyek.pages.common.HeaderPage;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -63,3 +63,6 @@ public class HeaderTest {
         }
     }
 }
+
+
+
