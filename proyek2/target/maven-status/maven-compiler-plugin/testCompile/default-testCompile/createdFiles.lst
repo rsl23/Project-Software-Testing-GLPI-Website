@@ -21,6 +21,7 @@ com\proyek\tests\company\AboutUsPageTest.class
 com\proyek\tests\company\CustomerPageTest.class
 com\proyek\tests\resources\FaqPageTest.class
 com\proyek\pages\product\CmdbPage.class
+com\proyek\pages\Tech\FeaturesPageTech.class
 com\proyek\tests\index\DashboardPageTest.class
 com\proyek\tests\product\FeaturesPageTest.class
 com\proyek\tests\product\RoadmapPageTest.class
@@ -34,7 +35,10 @@ com\proyek\pages\company\RndPage.class
 com\proyek\tests\product\FinancePageTest.class
 com\proyek\utils\ConfigReader.class
 com\proyek\pages\resources\FaqPage.class
+com\proyek\pages\Tech\PricesPageTech.class
 com\proyek\tests\company\RndPageTest.class
+com\proyek\tests\Tech\PricesPageTechTest.class
+com\proyek\tests\Tech\HomePageTechTest.class
 com\proyek\pages\company\CustomerPage.class
 com\proyek\tests\index\MyPaymentMethodTest.class
 com\proyek\utils\DriverFactory.class
@@ -53,10 +57,12 @@ com\proyek\tests\common\FooterTest.class
 com\proyek\pages\resources\PartnerPage.class
 com\proyek\tests\auth\LoginPageTest.class
 com\proyek\pages\auth\RegistrationPage.class
+com\proyek\tests\Tech\FeaturesPageTechTest.class
 com\proyek\pages\resources\BlogPage.class
 com\proyek\pages\pricing\PricesPage.class
 com\proyek\tests\pricing\PricesPageTest.class
 com\proyek\pages\product\IntegrationsPage.class
+com\proyek\pages\Tech\HomePageTech.class
 com\proyek\pages\index\MyPaymentMethod.class
 com\proyek\tests\product\IntegrationsPageTest.class
 com\proyek\pages\resources\CommunityPage.class
