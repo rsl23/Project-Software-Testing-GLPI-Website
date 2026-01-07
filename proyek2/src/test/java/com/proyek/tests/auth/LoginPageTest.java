@@ -1,7 +1,6 @@
 package com.proyek.tests.auth;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,10 +29,10 @@ public class LoginPageTest extends BaseTest {
     @Story("User Registration Journey")
     public void testCompleteRegistrationFlow() {
         // Step 1: Fill Email
-        loginPage.fillUsername("testdemo22@gmail.com");
+        loginPage.fillUsername("testdemo@gmail.com");
 
         // Step 3: Fill Password
-        loginPage.fillPassword("Passworddemo2.");
+        loginPage.fillPassword("NewPassword123!");
 
         // Step 8: Click Sign Me Up button
         loginPage.clickSubmit();
@@ -42,7 +41,7 @@ public class LoginPageTest extends BaseTest {
         // Note: Actual registration blocked by reCAPTCHA in production
         // Test verifies complete flow can be executed without errors
         String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl.contains("glpi-network.cloud"),
+        assertTrue(currentUrl.contains("glpi-network.cloud/index.php"),
                 "Registration flow completed - still on registration page as expected (reCAPTCHA present)");
     }
 }
