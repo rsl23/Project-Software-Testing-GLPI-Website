@@ -11,6 +11,7 @@ D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\t
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\index\DashboardPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\index\MyAccount.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\index\MyApplication.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\index\MyAppLoginPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\index\MyBilling.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\index\MyPaymentMethod.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\index\MySupportPage.java
@@ -39,6 +40,7 @@ D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\t
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\index\DashboardPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\index\MyAccountTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\index\MyApplicationTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\index\MyAppLoginTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\index\MyBillingTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\index\MyPaymentMethodTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\pricing\PricesPageTest.java

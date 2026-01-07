@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.proyek.tests.index.MyAppLoginTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 60.65 s <<< FAILURE! -- in com.proyek.tests.index.MyAppLoginTest
+com.proyek.tests.index.MyAppLoginTest.testOpenApplicationPage -- Time elapsed: 15.87 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: BUG: Login berhasil tetapi halaman menampilkan error 'The requested item has not been found'. URL: https://projectsoftware-testing.sg1.glpi-network.cloud/front/login.php. Expected: Redirect ke dashboard/central page. Actual: Error page dengan message 'The requested item has not been found'. ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.proyek.tests.index.MyAppLoginTest.testOpenApplicationPage(MyAppLoginTest.java:147)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

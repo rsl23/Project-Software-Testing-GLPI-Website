@@ -39,11 +39,13 @@ com\proyek\pages\company\CustomerPage.class
 com\proyek\tests\index\MyPaymentMethodTest.class
 com\proyek\utils\DriverFactory.class
 com\proyek\tests\index\MyApplicationTest.class
+com\proyek\tests\index\MyAppLoginTest.class
 com\proyek\tests\index\MyAccountTest.class
 com\proyek\pages\product\FeaturesPage.class
 com\proyek\tests\resources\CommunityPageTest.class
 com\proyek\pages\common\HomePage.class
 com\proyek\pages\product\RoadmapPage.class
+com\proyek\pages\index\MyAppLoginPage.class
 com\proyek\tests\resources\PartnerPageTest.class
 com\proyek\pages\common\HeaderPage.class
 com\proyek\pages\resources\DownloadPage.class
