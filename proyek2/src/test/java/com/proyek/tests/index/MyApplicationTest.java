@@ -1,18 +1,27 @@
 package com.proyek.tests.index;
 
-import com.proyek.pages.index.MyApplication;
-import com.proyek.pages.auth.LoginPage;
-import com.proyek.pages.index.DashboardPage;
-import org.junit.jupiter.api.*;
+import java.time.Duration;
+
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.proyek.pages.auth.LoginPage;
+import com.proyek.pages.index.DashboardPage;
+import com.proyek.pages.index.MyApplication;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -24,7 +33,7 @@ public class MyApplicationTest {
     private DashboardPage dashboardPage;
     private MyApplication myApplicationPage;
 
-    private final String USERNAME = "testdemo222@gmail.com";
+    private final String USERNAME = "testdemo@gmail.com";
     private final String PASSWORD = "NewPassword123!";
 
     @BeforeAll
@@ -84,6 +93,13 @@ public class MyApplicationTest {
         assertTrue(
                 driver.getCurrentUrl().contains("mode=instances") || driver.getCurrentUrl().contains("blankinstance"),
                 "URL tidak mengarah ke instance baru");
+        
+        // Kembali ke halaman My Application
+        myApplicationPage.open();
+        
+        // Verifikasi sudah kembali ke halaman utama
+        assertTrue(myApplicationPage.isOnMyApplicationPage(), 
+                "Tidak berhasil kembali ke halaman My Application");
     }
 
     @Test
@@ -157,9 +173,16 @@ public class MyApplicationTest {
     }
 
     @Test
-    @Order(10)
+    @Order(11)
     @DisplayName("Click Add Payment Mode link")
     void testClickAddPaymentMode() {
+        // Navigate back to My Application page first
+        myApplicationPage.open();
+        
+        // Wait for page to load
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(webDriver -> webDriver.getCurrentUrl().contains("mode=instances"));
+        
         myApplicationPage.clickAddPaymentMode();
         // assert URL berubah ke register payment mode
         assertTrue(driver.getCurrentUrl().contains("mode=registerpaymentmode"),
@@ -200,7 +223,7 @@ public class MyApplicationTest {
                 "GLPI 11", // service sesuai dropdown
                 "Password123!", // password
                 "mynewinstance", // subdomain
-                ".us5.glpi-network.cloud" // TLD valid
+                ".in1.glpi-network.cloud" // TLD valid - use the basic one that's always available
         );
         myApplicationPage.clickCreate();
 
