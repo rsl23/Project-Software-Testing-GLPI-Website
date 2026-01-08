@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.proyek.tests.company.AboutUsPageTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 30.42 s -- in com.proyek.tests.company.AboutUsPageTest

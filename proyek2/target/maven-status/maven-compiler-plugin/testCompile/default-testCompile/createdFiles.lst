@@ -1,5 +1,7 @@
+com\proyek\tests\Tech\MainHeaderPageTest.class
 com\proyek\pages\product\FinancePage.class
 com\proyek\pages\index\MyApplication.class
+com\proyek\pages\Tech\ContactUsPageTech.class
 com\proyek\pages\common\FooterPage.class
 com\proyek\pages\company\AboutUsPage.class
 com\proyek\pages\index\MyAccount.class
@@ -11,6 +13,7 @@ com\proyek\tests\common\HomePageTest.class
 com\proyek\tests\product\AdministrationPageTest.class
 com\proyek\pages\index\DashboardPage.class
 com\proyek\tests\product\HelpdeskPageTest.class
+com\proyek\tests\Tech\FaqPageTechTest.class
 com\proyek\pages\product\AdministrationPage.class
 com\proyek\tests\resources\TrainingPageTest.class
 com\proyek\tests\product\CmdbPageTest.class
@@ -35,11 +38,13 @@ com\proyek\pages\company\RndPage.class
 com\proyek\tests\product\FinancePageTest.class
 com\proyek\utils\ConfigReader.class
 com\proyek\pages\resources\FaqPage.class
+com\proyek\tests\Tech\ContactUsPageTechTest.class
 com\proyek\pages\Tech\PricesPageTech.class
 com\proyek\tests\company\RndPageTest.class
 com\proyek\tests\Tech\PricesPageTechTest.class
 com\proyek\tests\Tech\HomePageTechTest.class
 com\proyek\pages\company\CustomerPage.class
+com\proyek\pages\Tech\FooterPage.class
 com\proyek\tests\index\MyPaymentMethodTest.class
 com\proyek\utils\DriverFactory.class
 com\proyek\tests\index\MyApplicationTest.class
@@ -49,12 +54,15 @@ com\proyek\pages\product\FeaturesPage.class
 com\proyek\tests\resources\CommunityPageTest.class
 com\proyek\pages\common\HomePage.class
 com\proyek\pages\product\RoadmapPage.class
+com\proyek\tests\Tech\FooterPageTechTest.class
 com\proyek\pages\index\MyAppLoginPage.class
 com\proyek\tests\resources\PartnerPageTest.class
 com\proyek\pages\common\HeaderPage.class
 com\proyek\pages\resources\DownloadPage.class
 com\proyek\tests\common\FooterTest.class
+com\proyek\pages\Tech\FaqPageTech.class
 com\proyek\pages\resources\PartnerPage.class
+com\proyek\pages\Tech\MainHeaderPage.class
 com\proyek\tests\auth\LoginPageTest.class
 com\proyek\pages\auth\RegistrationPage.class
 com\proyek\tests\Tech\FeaturesPageTechTest.class

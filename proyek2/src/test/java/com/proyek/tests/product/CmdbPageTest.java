@@ -1,11 +1,19 @@
 package com.proyek.tests.product;
 
-import com.proyek.pages.product.CmdbPage;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.*;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.proyek.pages.product.CmdbPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CmdbPageTest {
@@ -16,6 +24,7 @@ public class CmdbPageTest {
     @BeforeAll
     void setupAll() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         cmdb = new CmdbPage(driver);
         cmdb.open();
     }

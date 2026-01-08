@@ -1,11 +1,20 @@
 package com.proyek.tests.product;
 
-import com.proyek.pages.product.FinancePage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.proyek.pages.product.FinancePage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -17,6 +26,7 @@ public class FinancePageTest {
     @BeforeAll
     void setupAll() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         financePage = new FinancePage(driver);
         financePage.open();
     }

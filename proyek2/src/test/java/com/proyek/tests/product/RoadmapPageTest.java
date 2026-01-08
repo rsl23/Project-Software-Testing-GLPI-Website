@@ -1,17 +1,23 @@
 package com.proyek.tests.product;
 
-import com.proyek.pages.product.RoadmapPage;
-import org.junit.jupiter.api.*;
+import java.time.Duration;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.proyek.pages.product.RoadmapPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RoadmapPageTest {
@@ -22,6 +28,7 @@ public class RoadmapPageTest {
     @BeforeAll
     void setupAll() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         roadmap = new RoadmapPage(driver);
         roadmap.open();
     }

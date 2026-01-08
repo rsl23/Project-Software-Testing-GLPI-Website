@@ -1,10 +1,19 @@
 package com.proyek.tests.company;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import com.proyek.base.BaseTest;
 import com.proyek.pages.company.AboutUsPage;
-import io.qameta.allure.*;
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 
 @Epic("GLPI Website Testing")
 @Feature("About Us Page")
@@ -16,6 +25,7 @@ public class AboutUsPageTest extends BaseTest {
     public void setup() {
         aboutUsPage = new AboutUsPage(driver);
         aboutUsPage.open();
+        sleep(1000); // Tunggu halaman load
     }
 
     @Test
@@ -24,6 +34,7 @@ public class AboutUsPageTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Story("Headline Verification")
     public void testHeadlineVisible() {
+        sleep(500); // Jeda sebelum verifikasi
         assertTrue(aboutUsPage.isHeadlineVisible(), "About Us headline should be visible");
     }
 
@@ -33,10 +44,13 @@ public class AboutUsPageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Story("Button Navigation")
     public void testDiscoverJobsButton() {
+        sleep(500); // Jeda sebelum verifikasi button
         assertTrue(aboutUsPage.isDiscoverJobsButtonVisible(), "Discover our jobs button should be visible");
 
         String mainWindow = driver.getWindowHandle();
+        sleep(800); // Jeda sebelum klik button agar terlihat
         aboutUsPage.clickDiscoverJobs();
+        sleep(1000); // Tunggu tab baru terbuka
 
         // Pindah ke tab baru dan cek URL
         for (String win : driver.getWindowHandles()) {
@@ -45,9 +59,19 @@ public class AboutUsPageTest extends BaseTest {
                 break;
             }
         }
+        sleep(500); // Tunggu halaman jobs load
 
         assertTrue(driver.getCurrentUrl().contains("welcometothejungle.com"), "Should navigate to jobs page");
         driver.close();
         driver.switchTo().window(mainWindow);
+    }
+
+    // Helper method untuk sleep
+    private void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

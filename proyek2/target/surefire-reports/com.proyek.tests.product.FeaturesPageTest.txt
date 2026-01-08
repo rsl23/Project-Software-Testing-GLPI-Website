@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.proyek.tests.product.FeaturesPageTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 44.17 s -- in com.proyek.tests.product.FeaturesPageTest

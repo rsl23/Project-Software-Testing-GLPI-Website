@@ -1,10 +1,16 @@
 package com.proyek.pages.product;
 
-import com.proyek.base.BasePage;
-import org.openqa.selenium.*;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.List;
+import com.proyek.base.BasePage;
 
 public class AdministrationPage extends BasePage {
 
@@ -34,6 +40,7 @@ public class AdministrationPage extends BasePage {
     // ================= URL =================
     public void open() {
         driver.get(adminUrl);
+        driver.manage().window().maximize();
         acceptCookieIfPresent();
         waitForPageLoad();
     }

@@ -1,11 +1,16 @@
 package com.proyek.tests.product;
 
-import com.proyek.pages.product.FeaturesPage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.proyek.pages.product.FeaturesPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class FeaturesPageTest {
@@ -16,6 +21,7 @@ public class FeaturesPageTest {
         @BeforeAll
         void setupAll() {
                 driver = new ChromeDriver();
+                driver.manage().window().maximize();
                 featuresPage = new FeaturesPage(driver);
                 featuresPage.open();
         }
