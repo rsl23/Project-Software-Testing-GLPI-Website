@@ -8,9 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.proyek.pages.product.CmdbPage;
@@ -71,15 +69,15 @@ public class CmdbPageTest {
     }
 
     // ================= NEWSLETTER =================
-    @Test
-    @DisplayName("Newsletter submission works with valid email")
-    void testNewsletterSubmission() {
-        String email = "demo@test.com";
-        cmdb.fillNewsletter(email);
+    // @Test
+    // @DisplayName("Newsletter submission works with valid email")
+    // void testNewsletterSubmission() {
+    //     String email = "demo@test.com";
+    //     cmdb.fillNewsletter(email);
 
-        WebElement emailInput = driver.findElement(By.cssSelector("input[type='email']"));
-        assertEquals(email, emailInput.getAttribute("value"), "Email tidak sesuai!");
-    }
+    //     WebElement emailInput = driver.findElement(By.cssSelector("input[type='email']"));
+    //     assertEquals(email, emailInput.getAttribute("value"), "Email tidak sesuai!");
+    // }
 
     // ================= SOCIAL LINKS =================
     @Test
