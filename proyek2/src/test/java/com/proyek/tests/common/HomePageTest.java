@@ -101,12 +101,9 @@ public class HomePageTest {
         String email = "demo@test.com";
         homepage.fillNewsletter(email);
 
-        // Assertion: Pastikan email sudah terinput
-        WebElement emailInput = driver.findElement(By.cssSelector("input[type='email']"));
-        assertEquals(email, emailInput.getAttribute("value"), "Email tidak sesuai!");
-
-        // Jika ada success message di halaman, bisa ditambahkan assertion di sini
-        // By successMessage = By.cssSelector(".newsletter-success");
-        // assertTrue(driver.findElement(successMessage).isDisplayed());
+        assertTrue(
+                homepage.isNewsletterSuccessMessageDisplayed(),
+                "Success message newsletter tidak muncul!");
     }
+
 }
