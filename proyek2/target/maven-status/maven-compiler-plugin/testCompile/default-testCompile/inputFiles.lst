@@ -18,11 +18,13 @@ D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\t
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\pricing\PricesPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\AdministrationPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\CmdbPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\ContactPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\FeaturesPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\FinancePage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\HelpdeskPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\IntegrationsPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\RoadmapPage.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\product\TeclibSupportFormPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\resources\BlogPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\resources\CommunityPage.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\pages\resources\DownloadPage.java
@@ -53,6 +55,7 @@ D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\t
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\pricing\PricesPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\product\AdministrationPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\product\CmdbPageTest.java
+D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\product\ContactPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\product\FeaturesPageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\product\FinancePageTest.java
 D:\Univ\SMS 5\Softes\Project\Project-Software-Testing-GLPI-Website\proyek2\src\test\java\com\proyek\tests\product\HelpdeskPageTest.java

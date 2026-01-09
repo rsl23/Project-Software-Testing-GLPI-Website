@@ -20,6 +20,7 @@ public class ContactPage extends BasePage {
     // Radio buttons
     private final By becomeUserRadio = By.xpath("//span[@class='forminator-radio-label' and text()='Become a GLPI user']");
     private final By alreadyCustomerRadio = By.xpath("//span[@class='forminator-radio-label']//font[contains(text(),'I am already a customer')]");
+    private final By youAlreadyGlpiUserRadio = By.xpath("//span[@class='forminator-radio-label' and text()='You already are a GLPI user']");
     private final By openCloudInstanceRadio = By.xpath("//span[@class='forminator-radio-label' and text()='I would like to open a Cloud instance']");
     private final By between1And25Radio = By.xpath("//span[@class='forminator-radio-label' and text()='Between 1 and 25']");
     
@@ -57,6 +58,15 @@ public class ContactPage extends BasePage {
 
     public void clickAlreadyCustomerRadio() {
         WebElement radio = wait.until(ExpectedConditions.elementToBeClickable(alreadyCustomerRadio));
+        scrollIntoView(radio);
+        highlight(radio);
+        demoSleep(500);
+        radio.click();
+        demoSleep(500);
+    }
+
+    public void clickYouAlreadyGlpiUserRadio() {
+        WebElement radio = wait.until(ExpectedConditions.elementToBeClickable(youAlreadyGlpiUserRadio));
         scrollIntoView(radio);
         highlight(radio);
         demoSleep(500);
@@ -196,6 +206,10 @@ public class ContactPage extends BasePage {
 
     public boolean isAlreadyCustomerRadioVisible() {
         return isVisible(alreadyCustomerRadio);
+    }
+
+    public boolean isYouAlreadyGlpiUserRadioVisible() {
+        return isVisible(youAlreadyGlpiUserRadio);
     }
 
     public boolean isOpenCloudInstanceRadioVisible() {

@@ -1,3 +1,4 @@
+com\proyek\pages\product\TeclibSupportFormPage.class
 com\proyek\tests\Tech\MainHeaderPageTest.class
 com\proyek\pages\product\FinancePage.class
 com\proyek\pages\index\MyApplication.class
@@ -50,10 +51,12 @@ com\proyek\utils\DriverFactory.class
 com\proyek\tests\index\MyApplicationTest.class
 com\proyek\tests\index\MyAppLoginTest.class
 com\proyek\tests\index\MyAccountTest.class
+com\proyek\pages\product\ContactPage.class
 com\proyek\pages\product\FeaturesPage.class
 com\proyek\tests\resources\CommunityPageTest.class
 com\proyek\pages\common\HomePage.class
 com\proyek\pages\product\RoadmapPage.class
+com\proyek\tests\product\ContactPageTest.class
 com\proyek\tests\Tech\FooterPageTechTest.class
 com\proyek\pages\index\MyAppLoginPage.class
 com\proyek\tests\resources\PartnerPageTest.class
