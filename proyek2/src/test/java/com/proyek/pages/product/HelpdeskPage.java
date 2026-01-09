@@ -1,11 +1,18 @@
 package com.proyek.pages.product;
 
-import com.proyek.base.BasePage;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.util.List;
 import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import com.proyek.base.BasePage;
 
 public class HelpdeskPage extends BasePage {
 
@@ -120,32 +127,24 @@ public class HelpdeskPage extends BasePage {
             driver.switchTo().frame(iframe);
             demoSleep(800);
 
-            while (true) {
-                WebElement nextBtn = null;
-                try {
-                    List<WebElement> candidates = driver.findElements(By.xpath("//a | //button | //*[@role='button']"));
-                    for (WebElement btn : candidates) {
-                        if (btn.isDisplayed() && btn.isEnabled()) {
-                            nextBtn = btn;
-                            break;
-                        }
-                    }
-                } catch (Exception ignored) {
-                }
-
-                if (nextBtn == null)
-                    break;
-
-                scrollIntoView(nextBtn);
-                highlight(nextBtn);
+            // Cari tombol "Discover the forms"
+            try {
+                WebElement discoverBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                        By.xpath("//button[.//span[contains(text(), 'Discover the forms')]]")));
+                
+                scrollIntoView(discoverBtn);
+                highlight(discoverBtn);
                 demoSleep(500);
 
                 try {
-                    nextBtn.click();
+                    discoverBtn.click();
                 } catch (ElementClickInterceptedException e) {
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", nextBtn);
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", discoverBtn);
                 }
                 demoSleep(1000);
+                
+            } catch (TimeoutException e) {
+                System.out.println("Tombol 'Discover the forms' tidak ditemukan di iframe");
             }
 
         } catch (TimeoutException e) {

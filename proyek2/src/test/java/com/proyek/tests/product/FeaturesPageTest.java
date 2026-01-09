@@ -5,14 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.proyek.pages.product.FeaturesPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FeaturesPageTest {
 
         private WebDriver driver;
@@ -36,6 +40,7 @@ public class FeaturesPageTest {
         // ================= BASIC PAGE LOAD =================
 
         @Test
+        @Order(1)
         @DisplayName("Features page should load successfully")
         void testFeaturesPageLoaded() {
                 assertTrue(
@@ -46,6 +51,7 @@ public class FeaturesPageTest {
         // ================= CTA BUTTONS =================
 
         @Test
+        @Order(2)
         @DisplayName("Discover Now button should be visible")
         void testDiscoverNowButtonVisible() {
                 assertTrue(
@@ -54,6 +60,7 @@ public class FeaturesPageTest {
         }
 
         @Test
+        @Order(3)
         @DisplayName("Discover Now button should open correct page")
         void testDiscoverNowRedirect() {
                 String openedUrl = featuresPage.clickDiscoverNowAndGetUrl();
@@ -70,6 +77,7 @@ public class FeaturesPageTest {
         }
 
         @Test
+        @Order(4)
         @DisplayName("Free Instance button should be visible")
         void testFreeInstanceButtonVisible() {
                 assertTrue(
@@ -78,6 +86,7 @@ public class FeaturesPageTest {
         }
 
         @Test
+        @Order(5)
         @DisplayName("Free Instance button should open correct page")
         void testFreeInstanceRedirect() {
                 String openedUrl = featuresPage.clickFreeInstanceAndGetUrl();
@@ -96,6 +105,7 @@ public class FeaturesPageTest {
         // ================= ACCORDION =================
 
         @Test
+        @Order(6)
         @DisplayName("Accordion Inventory should expand and show content")
         void testAccordionInventoryCanBeOpened() {
                 String accordionTitle = "Inventory";

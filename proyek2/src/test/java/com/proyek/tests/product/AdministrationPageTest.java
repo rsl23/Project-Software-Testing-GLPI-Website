@@ -116,7 +116,7 @@ public class AdministrationPageTest {
         String email = "demo@test.com";
         adminPage.fillNewsletter(email);
 
-        WebElement emailInput = driver.findElement(By.cssSelector("input[type='email']"));
+        WebElement emailInput = driver.findElement(By.cssSelector("input[data-automation-id='form_email']"));
         assertEquals(email, emailInput.getAttribute("value"), "Email tidak sesuai!");
     }
 }

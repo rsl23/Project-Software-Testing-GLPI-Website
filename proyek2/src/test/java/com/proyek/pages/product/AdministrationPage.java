@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,9 +32,8 @@ public class AdministrationPage extends BasePage {
     public final By browseAllTestimonials = By.id("link_button-250-57");
     public final By exploreNow = By.id("link_button-216-57");
 
-    public final By newsletterEmail = By.cssSelector("input[name='email']");
-    public final By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name='checkbox-75[]']");
-    public final By newsletterSubmit = By.cssSelector("input.wpcf7-submit");
+    public final By newsletterEmail = By.cssSelector("input[data-automation-id='form_email']");
+    public final By newsletterSubmit = By.cssSelector("input[data-automation-id='subscribe-submit-button']");
 
     // ================= URL =================
     public void open() {
@@ -122,22 +120,17 @@ public class AdministrationPage extends BasePage {
     public void fillNewsletter(String email) {
         scrollToFooter();
         WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(newsletterEmail));
+        scrollIntoView(emailInput);
         highlight(emailInput);
         emailInput.clear();
         emailInput.sendKeys(email);
+        demoSleep(300);
 
-        try {
-            WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(newsletterCheckbox));
-            if (!checkbox.isSelected()) {
-                scrollIntoView(checkbox);
-                highlight(checkbox);
-                checkbox.click();
-            }
-        } catch (TimeoutException | NoSuchElementException ignored) {
-        }
-
-        driver.findElement(newsletterSubmit).click();
-        waitForPageLoad();
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(newsletterSubmit));
+        scrollIntoView(submitButton);
+        highlight(submitButton);
+        submitButton.click();
+        demoSleep(500);
     }
 
     // ================= HELPER =================

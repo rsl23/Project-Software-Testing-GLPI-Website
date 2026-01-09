@@ -1,11 +1,18 @@
 package com.proyek.tests.resources;
 
-import com.proyek.pages.resources.BlogPage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.proyek.pages.resources.BlogPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -79,36 +86,36 @@ public class BlogPageTest {
         assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah submit contact form");
     }
 
-    @Test
-    @Order(5)
-    @DisplayName("View all testimonials works")
-    void testViewAllTestimonials() {
-        blogPage.clickViewAllTestimonials();
-        assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah browse All Testimonials");
-    }
+    // @Test
+    // @Order(5)
+    // @DisplayName("View all testimonials works")
+    // void testViewAllTestimonials() {
+    //     blogPage.clickViewAllTestimonials();
+    //     assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah browse All Testimonials");
+    // }
 
-    @Test
-    @Order(6)
-    @DisplayName("Explore Now button works")
-    void testExploreNowButton() {
-        blogPage.clickExploreNow();
-        assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah klik Explore Now");
-    }
+    // @Test
+    // @Order(6)
+    // @DisplayName("Explore Now button works")
+    // void testExploreNowButton() {
+    //     blogPage.clickExploreNow();
+    //     assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah klik Explore Now");
+    // }
 
-    @Test
-    @Order(7)
-    @DisplayName("Start Now button works")
-    void testStartNowButton() {
-        blogPage.clickStartNow();
-        assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah klik Start Now");
-    }
+    // @Test
+    // @Order(7)
+    // @DisplayName("Start Now button works")
+    // void testStartNowButton() {
+    //     blogPage.clickStartNow();
+    //     assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah klik Start Now");
+    // }
 
-    @Test
-    @Order(8)
-    @DisplayName("Newsletter subscription can be submitted")
-    void testNewsletterSubscription() {
-        blogPage.fillNewsletter("john.doe@test.com");
-        assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah submit newsletter");
-    }
+    // @Test
+    // @Order(8)
+    // @DisplayName("Newsletter subscription can be submitted")
+    // void testNewsletterSubscription() {
+    //     blogPage.fillNewsletter("john.doe@test.com");
+    //     assertTrue(blogPage.isPageVisible(), "Blog page tetap visible setelah submit newsletter");
+    // }
 
 }

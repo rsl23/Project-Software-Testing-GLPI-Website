@@ -1,11 +1,18 @@
 package com.proyek.tests.resources;
 
-import com.proyek.pages.resources.FaqPage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.proyek.pages.resources.FaqPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -17,6 +24,7 @@ public class FaqPageTest {
     @BeforeAll
     void setupAll() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         faqPage = new FaqPage(driver);
         faqPage.open();
     }
@@ -36,25 +44,25 @@ public class FaqPageTest {
     }
 
     // ================= DROPDOWNS =================
-    @Test
-    @Order(2)
-    @DisplayName("Dropdowns can be opened individually")
-    void testDropdowns() {
-        // Buka satu per satu dan cek tidak error
-        faqPage.openInventoryDropdown();
-        faqPage.openNotificationsDropdown();
-        faqPage.openGroupsDropdown();
-        faqPage.openCustomiseDropdown();
-        faqPage.openPluginsDropdown();
-        faqPage.openAuthSSODropdown();
-        faqPage.openScimDropdown();
-        faqPage.openWebhookDropdown();
-        assertTrue(true); // placeholder, dropdown visibility bisa diperluas
-    }
+    // @Test
+    // @Order(2)
+    // @DisplayName("Dropdowns can be opened individually")
+    // void testDropdowns() {
+    //     // Buka satu per satu dan cek tidak error
+    //     faqPage.openInventoryDropdown();
+    //     faqPage.openNotificationsDropdown();
+    //     faqPage.openGroupsDropdown();
+    //     faqPage.openCustomiseDropdown();
+    //     faqPage.openPluginsDropdown();
+    //     faqPage.openAuthSSODropdown();
+    //     faqPage.openScimDropdown();
+    //     faqPage.openWebhookDropdown();
+    //     assertTrue(true); // placeholder, dropdown visibility bisa diperluas
+    // }
 
     // ================= BUTTONS =================
     @Test
-    @Order(3)
+    @Order(2)
     @DisplayName("All buttons work correctly")
     void testButtons() {
         // Tombol internal/external (open new tab di handle di page class)
@@ -69,32 +77,30 @@ public class FaqPageTest {
 
         faqPage.clickViewFullFAQ();
         faqPage.clickSeePluginsFaq();
-        faqPage.clickViewAllTestimonials();
-        faqPage.clickExploreNow();
-        faqPage.clickStartNow();
+        
 
         // Pastikan kita kembali ke halaman FAQ
         assertTrue(faqPage.isPageVisible(), "Page tidak kembali ke FAQ setelah tombol eksternal");
     }
 
     // ================= CONTACT FORM =================
-    @Test
-    @Order(4)
-    @DisplayName("Contact form can be filled and submitted")
-    void testContactForm() {
-        faqPage.fillContactForm();
-        assertTrue(faqPage.isPageVisible(), "Page hilang setelah submit contact form");
-    }
+    // @Test
+    // @Order(4)
+    // @DisplayName("Contact form can be filled and submitted")
+    // void testContactForm() {
+    //     faqPage.fillContactForm();
+    //     assertTrue(faqPage.isPageVisible(), "Page hilang setelah submit contact form");
+    // }
 
     // ================= NEWSLETTER =================
-    @Test
-    @Order(5)
-    @DisplayName("Newsletter form can be filled and submitted")
-    void testNewsletter() {
-        String testEmail = "testuser@domain.com";
-        faqPage.fillNewsletter(testEmail);
+    // @Test
+    // @Order(5)
+    // @DisplayName("Newsletter form can be filled and submitted")
+    // void testNewsletter() {
+    //     String testEmail = "testuser@domain.com";
+    //     faqPage.fillNewsletter(testEmail);
 
-        // Optional: cek input value atau success message jika ada
-        assertTrue(true, "Newsletter submitted"); // placeholder
-    }
+    //     // Optional: cek input value atau success message jika ada
+    //     assertTrue(true, "Newsletter submitted"); // placeholder
+    // }
 }

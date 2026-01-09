@@ -1,8 +1,13 @@
 package com.proyek.pages.resources;
 
-import com.proyek.base.BasePage;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import com.proyek.base.BasePage;
 
 public class DownloadPage extends BasePage {
 
@@ -31,6 +36,7 @@ public class DownloadPage extends BasePage {
     private final By readDocumentation = By.linkText("Read the documentation");
     private final By checkSourceCode = By.linkText("Check the source code");
     private final By contactPartner = By.linkText("Contact one of our partners");
+    private final By videoPlayButton = By.cssSelector("div.play");
     private final By browseTestimonials = By.cssSelector("a[href*='youtube.com/playlist']");
     private final By exploreNow = By.cssSelector("section a[href*='/features/']");
     private final By startNow = By.xpath("//a[contains(text(),'Start Now')]");
@@ -124,6 +130,26 @@ public class DownloadPage extends BasePage {
 
     public void clickPartnerAndReturn() {
         clickAndReturn(contactPartner);
+    }
+
+    public void clickVideoPlay() {
+        try {
+            WebElement playBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(videoPlayButton));
+            scrollIntoView(playBtn);
+            highlight(playBtn);
+            demoSleep(500);
+            
+            try {
+                playBtn.click();
+            } catch (Exception e) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", playBtn);
+            }
+            
+            demoSleep(2000); // tunggu video load
+            System.out.println("Video play button clicked successfully.");
+        } catch (TimeoutException e) {
+            System.out.println("Video play button tidak muncul, skip action ini.");
+        }
     }
 
     public void fillContactForm() {

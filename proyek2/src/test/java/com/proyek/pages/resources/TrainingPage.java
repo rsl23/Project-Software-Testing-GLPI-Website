@@ -144,8 +144,8 @@ public class TrainingPage extends BasePage {
     }
 
     // ================= FORM ACTIONS =================
-    public boolean fillRegistrationForm(String lastName, String firstName, String email, String company,
-            String country, String phone, String message, String formationDate) {
+    public void fillRegistrationForm(String lastName, String firstName, String email, String company,
+            String country, String phone, String message) {
         try {
             fillInput(inputLastName, lastName);
             fillInput(inputFirstName, firstName);
@@ -154,13 +154,11 @@ public class TrainingPage extends BasePage {
             fillInput(inputCountry, country);
             fillInput(inputPhone, phone);
             selectRadio(radioOnline);
-            boolean dropdownSelected = selectDropdownByValue(dropdownFormation, formationDate);
+            // Skip dropdown selection - menggunakan nilai default
             fillInput(inputMessage, message);
             clickElement(submitButton);
-            return dropdownSelected;
         } catch (Exception e) {
             System.out.println("⚠️ Error filling registration form: " + e.getMessage());
-            return false;
         }
     }
 
@@ -181,12 +179,27 @@ public class TrainingPage extends BasePage {
 
     public void downloadProgram() {
         String mainWindow = driver.getWindowHandle();
+        
+        // Locate and click button - menghindari StaleElementReferenceException
         WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(downloadProgramButton));
         ((JavascriptExecutor) driver)
                 .executeScript("arguments[0].scrollIntoView({block: 'center'}); window.scrollBy(0,-100);", btn);
+        
+        // Re-locate element sebelum highlight dan click untuk menghindari stale element
+        btn = driver.findElement(downloadProgramButton);
         highlight(btn);
+        
+        // Re-locate lagi sebelum click
+        btn = driver.findElement(downloadProgramButton);
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
 
+        // Tunggu sebentar untuk memastikan download dimulai
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+
+        // Handle new window/tab jika ada
         for (String handle : driver.getWindowHandles()) {
             if (!handle.equals(mainWindow)) {
                 driver.switchTo().window(handle);

@@ -4,14 +4,18 @@ import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.proyek.pages.product.IntegrationsPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class IntegrationsPageTest {
 
     private WebDriver driver;
@@ -33,18 +37,21 @@ public class IntegrationsPageTest {
     }
 
     @Test
+    @Order(1)
     @DisplayName("Integrations page should load")
     void testPageLoaded() {
         assertTrue(page.isPageTitleVisible(), "Judul halaman Integrations tidak tampil");
     }
 
     @Test
+    @Order(2)
     @DisplayName("Integration cards should be visible")
     void testCardsVisible() {
         assertTrue(page.areIntegrationCardsVisible(), "Card integrations tidak tampil");
     }
 
     @Test
+    @Order(3)
     @DisplayName("Search API should show cards containing keyword API")
     void testSearchIntegration() {
         page.searchIntegration("API");
@@ -54,12 +61,14 @@ public class IntegrationsPageTest {
     }
 
     @Test
+    @Order(4)
     @DisplayName("Click first integration card opens valid integration page")
     void testIntegrationCardOpensValidPage() {
         assertTrue(page.clickFirstIntegrationAndVerifyPage(), "Halaman integration yang dibuka tidak valid");
     }
 
     @Test
+    @Order(5)
     @DisplayName("Filter API should show cards containing keyword API and reset with All")
     void testApiFilter() {
 
@@ -80,6 +89,7 @@ public class IntegrationsPageTest {
     }
 
     @Test
+    @Order(6)
     @DisplayName("Load More Articles button should load more cards")
     void testLoadMoreArticles() {
         int before = page.getVisibleCardCount();

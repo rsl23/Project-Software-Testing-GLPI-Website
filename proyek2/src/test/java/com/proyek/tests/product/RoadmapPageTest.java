@@ -9,8 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +23,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.proyek.pages.product.RoadmapPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RoadmapPageTest {
 
     private WebDriver driver;
@@ -41,6 +45,7 @@ public class RoadmapPageTest {
     }
 
     @Test
+    @Order(1)
     @DisplayName("Roadmap page should load successfully")
     void testRoadmapPageLoaded() {
         assertEquals(
@@ -50,6 +55,7 @@ public class RoadmapPageTest {
     }
 
     @Test
+    @Order(2)
     @DisplayName("Contribute button should redirect to contact page")
     void testContributeButton() {
         roadmap.clickContributeButton();
@@ -63,6 +69,7 @@ public class RoadmapPageTest {
     }
 
     @Test
+    @Order(3)
     @DisplayName("Productivity filter checkbox should be selectable")
     void testProductivityCheckboxCanBeSelected() {
         String filterId = "Productivité";
@@ -76,6 +83,7 @@ public class RoadmapPageTest {
     }
 
     @Test
+    @Order(4)
     @DisplayName("Productivity filter should display roadmap cards")
     void testFilteredCardsAppear() {
         String filterId = "Productivité";

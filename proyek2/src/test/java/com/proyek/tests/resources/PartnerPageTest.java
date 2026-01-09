@@ -1,12 +1,22 @@
 package com.proyek.tests.resources;
 
-import com.proyek.pages.resources.PartnerPage;
-import org.junit.jupiter.api.*;
+import java.time.Duration;
+
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-import static org.junit.jupiter.api.Assertions.*;
+
+import com.proyek.pages.resources.PartnerPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -19,6 +29,7 @@ public class PartnerPageTest {
     @BeforeAll
     void setupAll() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         partnerPage = new PartnerPage(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // inisialisasi wait
         partnerPage.open();
@@ -68,6 +79,7 @@ public class PartnerPageTest {
     }
 
     @Test
+    @Order(4)
     @DisplayName("Click 'I want to become a partner' redirects correctly")
     void testClickBecomePartnerButton() {
         String url = partnerPage.clickBecomePartnerButton();
