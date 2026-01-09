@@ -134,6 +134,10 @@ public class PricesPage extends BasePage {
 
     public void exploreAndReturn() {
         clickSameTab(exploreNow);
+
+        // Reload ke URL utama Prices
+        driver.get(pricesUrl);
+        waitForPageLoad();
     }
 
     public void fillContactForm() {
@@ -161,22 +165,33 @@ public class PricesPage extends BasePage {
         waitForPageLoad();
     }
 
-    public void fillNewsletter(String emailStr) {
-        // Isi email
-        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(newsletterEmail));
+    public void fillNewsletter(String email) {
+        // scroll pelan-pelan ke bawah biar JS render jalan
+        ((JavascriptExecutor) driver).executeScript(
+                "window.scrollTo(0, document.body.scrollHeight);");
+
+        By emailLocator = By.id("form_email_1");
+
+        WebElement emailInput = wait.until(
+                ExpectedConditions.presenceOfElementLocated(emailLocator));
+
+        // pastikan kelihatan
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});", emailInput);
+
+        highlight(emailInput);
+
         emailInput.clear();
-        emailInput.sendKeys(emailStr);
+        emailInput.sendKeys(email);
 
-        // Centang checkbox jika belum dicentang
-        WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(newsletterCheckbox));
-        if (!checkbox.isSelected())
-            safeClick(checkbox);
+        // submit (opsional)
+        By submitBtn = By.cssSelector("input[data-automation-id='subscribe-submit-button']");
 
-        // Klik tombol Subscribe yang spesifik
-        WebElement submit = wait.until(ExpectedConditions.elementToBeClickable(newsletterSubmit));
-        safeClick(submit);
-
-        waitForPageLoad();
+        if (!driver.findElements(submitBtn).isEmpty()) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();",
+                            driver.findElement(submitBtn));
+        }
     }
 
     // ================= HELPER =================
@@ -189,5 +204,22 @@ public class PricesPage extends BasePage {
         return isVisible(pageTitle);
     }
 
-}
+    public void resetToPricesPage() {
+        ((JavascriptExecutor) driver).executeScript(
+                "history.pushState('', document.title, window.location.pathname);");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
+        waitForPageLoad();
+    }
 
+    private final By newsletterSuccess = By.cssSelector(".mailpoet_message, .mailpoet_success");
+
+    public boolean isNewsletterSuccessMessageDisplayed() {
+        try {
+            return wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(newsletterSuccess)).isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+}
