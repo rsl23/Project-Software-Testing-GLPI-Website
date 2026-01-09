@@ -177,7 +177,7 @@ public class RegistrationPage extends BasePage {
             System.out.println("Waiting for registration to process and redirect...");
             // Wait up to 60 seconds for redirect to welcome page
             // Registration processing takes time (form validation, account creation, etc)
-            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(150));
+            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(60));
             longWait.until(ExpectedConditions.urlContains("index.php?welcomecid="));
             System.out.println("Successfully redirected to: " + driver.getCurrentUrl());
         } catch (TimeoutException e) {
