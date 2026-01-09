@@ -26,7 +26,7 @@ public class MyAppLoginTest {
     private LoginPage loginPage;
     private MyApplication myApplicationPage;
 
-    private final String USERNAME = "testdemo@gmail.com";
+    private final String USERNAME = "demoo@test.com";
     private final String PASSWORD = "NewPassword123!";
 
     @BeforeAll
@@ -91,7 +91,7 @@ public class MyAppLoginTest {
         assertTrue(appLoginPage.isSignInButtonVisible(), "Sign in button tidak terlihat");
 
         // Step 7: Login ke GLPI app
-        appLoginPage.fillLoginName("testdemo@gmail.com");
+        appLoginPage.fillLoginName("demooo@test.com");
         appLoginPage.fillLoginPassword("NewPassword123!");
         appLoginPage.clickSignIn();
         

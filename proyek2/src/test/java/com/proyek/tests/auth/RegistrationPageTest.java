@@ -34,7 +34,7 @@ public class RegistrationPageTest extends BaseTest {
     @Story("User Registration Journey")
     public void testCompleteRegistrationFlow() {
         // Step 1: Fill Email
-        registrationPage.fillUsername("testdemo222122@gmail.com");
+        registrationPage.fillUsername("testdemo32332@gmail.com");
 
         // Step 2: Fill Company Name
         registrationPage.fillOrgName("ISTTS");
@@ -49,7 +49,7 @@ public class RegistrationPageTest extends BaseTest {
         registrationPage.selectCountry("Indonesia");
 
         // Step 6: Fill Application Address (subdomain)
-        registrationPage.fillSubdomain("projectsoftware-testing222122");
+        registrationPage.fillSubdomain("projectsoftware55-testing2");
 
         // Step 7: Select TLD (.sg1.glpi-network.cloud - Singapore)
         registrationPage.selectTld(".sg1.glpi-network.cloud");

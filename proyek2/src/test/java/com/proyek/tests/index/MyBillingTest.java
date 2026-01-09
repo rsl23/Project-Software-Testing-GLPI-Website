@@ -1,19 +1,23 @@
 package com.proyek.tests.index;
 
+import java.time.Duration;
+
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.proyek.pages.auth.LoginPage;
 import com.proyek.pages.index.DashboardPage;
 import com.proyek.pages.index.MyBilling;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -24,7 +28,7 @@ public class MyBillingTest {
     private DashboardPage dashboardPage;
     private MyBilling myBillingPage;
 
-    private final String USERNAME = "testdemo222@gmail.com";
+    private final String USERNAME = "demoasdffdsao@test.com";
     private final String PASSWORD = "NewPassword123!";
 
     @BeforeAll

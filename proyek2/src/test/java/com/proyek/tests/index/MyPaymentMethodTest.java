@@ -39,7 +39,7 @@ public class MyPaymentMethodTest extends BaseTest {
     private DashboardPage dashboardPage;
     private MyBilling myBillingPage;
 
-    private final String USERNAME = "testdemo@gmail.com";
+    private final String USERNAME = "demoasdffdsao@test.com";
     private final String PASSWORD = "NewPassword123!";
 
     @BeforeAll

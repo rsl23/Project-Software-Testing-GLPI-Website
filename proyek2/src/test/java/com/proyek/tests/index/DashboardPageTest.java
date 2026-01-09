@@ -1,14 +1,20 @@
 package com.proyek.tests.index;
 
-import com.proyek.pages.auth.LoginPage;
-import com.proyek.pages.index.DashboardPage;
-import org.junit.jupiter.api.*;
+import java.time.Duration;
+
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.proyek.pages.auth.LoginPage;
+import com.proyek.pages.index.DashboardPage;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DashboardPageTest {
@@ -17,7 +23,7 @@ public class DashboardPageTest {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
 
-    private final String USERNAME = "testdemo22@gmail.com";
+    private final String USERNAME = "testdemo224@gmail.com";
     private final String PASSWORD = "Passworddemo2.";
 
     @BeforeAll

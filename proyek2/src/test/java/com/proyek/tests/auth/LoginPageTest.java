@@ -29,7 +29,7 @@ public class LoginPageTest extends BaseTest {
     @Story("User Registration Journey")
     public void testCompleteRegistrationFlow() {
         // Step 1: Fill Email
-        loginPage.fillUsername("testdemo@gmail.com");
+        loginPage.fillUsername("demooo@test.com");
 
         // Step 3: Fill Password
         loginPage.fillPassword("NewPassword123!");

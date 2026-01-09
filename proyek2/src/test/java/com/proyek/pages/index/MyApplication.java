@@ -1,5 +1,7 @@
 package com.proyek.pages.index;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,8 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.proyek.base.BasePage;
-
-import java.time.Duration;
 
 public class MyApplication extends BasePage {
     private final String myApplicationUrl = "https://myaccount.glpi-network.cloud/index.php?mode=instances";
@@ -258,16 +258,26 @@ public class MyApplication extends BasePage {
     // ================= WAIT FOR INSTALLATION =================
     public void waitForInstallationComplete() {
         try {
-            // tunggu waitMask hilang
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("waitMask")));
-            demoSleep(1000);
+            // tunggu waitMask hilang dengan timeout lebih lama
+            WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(120));
+            longWait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("waitMask")));
+            
+            // tunggu sebentar untuk memastikan halaman sukses fully loaded
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+            }
 
-            // ambil URL instance baru
+            // tunggu element instance link muncul dengan explicit wait
+            longWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("p.well a")));
+            
             WebElement instanceLink = driver.findElement(By.cssSelector("p.well a"));
             String instanceUrl = instanceLink.getAttribute("href");
             System.out.println("New instance ready at: " + instanceUrl);
         } catch (Exception e) {
             System.out.println("Installation complete page not detected: " + e.getMessage());
+            // Print current page source untuk debugging
+            System.out.println("Current URL: " + driver.getCurrentUrl());
         }
     }
 
