@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
 
-import java.time.Duration;
+// import java.time.Duration;
 import java.util.List;
 
 public class FooterPage {
@@ -88,6 +88,39 @@ public class FooterPage {
                 driver.get(faqUrl); // kembali ke FAQ
             }
         }
+    }
+
+    public String clickFooterLinkAndGetUrl(WebElement link) {
+        try {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].scrollIntoView(true);", link);
+
+            link.click();
+            Thread.sleep(1500);
+
+            return driver.getCurrentUrl();
+        } catch (Exception e) {
+            throw new RuntimeException("Gagal klik footer link", e);
+        }
+    }
+
+    public List<String> getAllFooterHrefs() {
+        return driver.findElements(By.cssSelector("footer#main-footer a"))
+                .stream()
+                .map(e -> e.getAttribute("href"))
+                .filter(h -> h != null && !h.isEmpty())
+                .distinct()
+                .toList();
+    }
+
+    public boolean isExternalProductLink(String href) {
+        return href.toLowerCase().contains("glpi");
+    }
+
+    public boolean isExpectedExternalProductUrl(String href, String currentUrl) {
+        if (href.toLowerCase().contains("glpi"))
+            return currentUrl.contains("glpi-project.org");
+        return false;
     }
 
 }
