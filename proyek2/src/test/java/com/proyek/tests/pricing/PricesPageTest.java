@@ -17,6 +17,7 @@ public class PricesPageTest {
     @BeforeAll
     void setupAll() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         pricesPage = new PricesPage(driver);
         pricesPage.open();
     }
@@ -105,12 +106,12 @@ public class PricesPageTest {
     @Test
     @Order(9)
     @DisplayName("Newsletter submission works with valid email")
-    void testNewsletter() {
+    void testNewsletterSubmission() {
         String email = "demo@test.com";
         pricesPage.fillNewsletter(email);
 
-        // Cek nilai email tetap di input
-        WebElement emailInput = driver.findElement(pricesPage.newsletterEmail);
-        assertEquals(email, emailInput.getAttribute("value"), "Email newsletter tidak sesuai!");
+        assertTrue(
+                pricesPage.isNewsletterSuccessMessageDisplayed(),
+                "Success message newsletter tidak muncul!");
     }
 }

@@ -40,6 +40,7 @@ public class HomePage extends BasePage {
     private final By newsletterEmail = By.cssSelector("input[type='email']");
     private final By newsletterSubmit = By.cssSelector("input[type='submit']");
     private final By socialLinks = By.cssSelector("footer a[target='_blank'][href^='http']");
+    private final By newsletterIframe = By.cssSelector("iframe[src*='mailpoet']");
 
     // ================= VISIBILITY =================
     public boolean isHeroVisible() {
@@ -89,22 +90,31 @@ public class HomePage extends BasePage {
 
     // ================= NEWSLETTER =================
     public void fillNewsletter(String email) {
-        scrollToFooter();
-        WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(newsletterEmail));
+        // scroll pelan-pelan ke bawah biar JS render jalan
+        ((JavascriptExecutor) driver).executeScript(
+                "window.scrollTo(0, document.body.scrollHeight);");
+
+        By emailLocator = By.id("form_email_1");
+
+        WebElement emailInput = wait.until(
+                ExpectedConditions.presenceOfElementLocated(emailLocator));
+
+        // pastikan kelihatan
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});", emailInput);
+
         highlight(emailInput);
+
         emailInput.clear();
         emailInput.sendKeys(email);
 
-        // Optional checkbox
-        By newsletterCheckbox = By.cssSelector("input[type='checkbox'][name*='checkbox']");
-        List<WebElement> checkboxes = driver.findElements(newsletterCheckbox);
-        if (!checkboxes.isEmpty() && !checkboxes.get(0).isSelected()) {
-            scrollIntoView(checkboxes.get(0));
-            checkboxes.get(0).click();
+        // submit (opsional)
+        By submitBtn = By.cssSelector("input[type='submit']");
+        if (!driver.findElements(submitBtn).isEmpty()) {
+            ((JavascriptExecutor) driver)
+                    .executeScript("arguments[0].click();",
+                            driver.findElement(submitBtn));
         }
-
-        driver.findElement(newsletterSubmit).click();
-        // Tunggu halaman / success message bisa ditambahkan di test
     }
 
     // ================= SOCIAL =================
@@ -153,5 +163,16 @@ public class HomePage extends BasePage {
         }
         driver.switchTo().window(main);
     }
-}
 
+    private final By newsletterSuccess = By.cssSelector(".mailpoet_message, .mailpoet_success");
+
+    public boolean isNewsletterSuccessMessageDisplayed() {
+        try {
+            return wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(newsletterSuccess)).isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+}
