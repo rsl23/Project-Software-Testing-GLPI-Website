@@ -180,22 +180,17 @@ public class TrainingPage extends BasePage {
     public void downloadProgram() {
         String mainWindow = driver.getWindowHandle();
         
-        // Locate and click button - menghindari StaleElementReferenceException
-        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(downloadProgramButton));
-        ((JavascriptExecutor) driver)
-                .executeScript("arguments[0].scrollIntoView({block: 'center'}); window.scrollBy(0,-100);", btn);
-        
-        // Re-locate element sebelum highlight dan click untuk menghindari stale element
-        btn = driver.findElement(downloadProgramButton);
-        highlight(btn);
-        
-        // Re-locate lagi sebelum click
-        btn = driver.findElement(downloadProgramButton);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", btn);
+        // Gunakan JavaScript untuk scroll dan click langsung tanpa menyimpan reference
+        ((JavascriptExecutor) driver).executeScript(
+            "var element = document.getElementById('link_button-488-432450');" +
+            "element.scrollIntoView({block: 'center'});" +
+            "window.scrollBy(0, -100);" +
+            "setTimeout(function() { element.click(); }, 500);"
+        );
 
         // Tunggu sebentar untuk memastikan download dimulai
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
         }
 
