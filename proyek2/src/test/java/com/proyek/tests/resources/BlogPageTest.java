@@ -62,12 +62,26 @@ public class BlogPageTest {
             assertTrue(blogPage.isCategoryActive(cat), cat + " should be active");
             assertTrue(blogPage.hasArticles(), "There should be articles for " + cat);
         }
+        
+        // Kembali ke kategori "All" setelah test dan tunggu artikel fully loaded
+        blogPage.clickCategory("All");
+        try {
+            Thread.sleep(2000); // tunggu artikel kategori "All" fully loaded
+        } catch (InterruptedException e) {
+        }
     }
 
     @Test
     @Order(3)
     @DisplayName("Load more articles works correctly")
     void testLoadMoreArticles() {
+        // Pastikan di kategori "All" dan tunggu artikel fully loaded
+        blogPage.clickCategory("All");
+        try {
+            Thread.sleep(2000); // tunggu artikel fully loaded
+        } catch (InterruptedException e) {
+        }
+        
         int initialArticles = blogPage.getAllArticlesCount();
         blogPage.clickLoadMore();
         int afterLoadMore = blogPage.getAllArticlesCount();

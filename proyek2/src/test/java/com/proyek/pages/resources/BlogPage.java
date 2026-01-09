@@ -1,12 +1,21 @@
 package com.proyek.pages.resources;
 
-import com.proyek.base.BasePage;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.proyek.base.BasePage;
 
 public class BlogPage extends BasePage {
 
@@ -212,8 +221,20 @@ public class BlogPage extends BasePage {
                 // Tunggu tombol clickable dan siap
                 wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(loadMore)));
 
+                // Tambahkan jeda sebelum klik untuk memastikan tombol ready
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                }
+
                 scrollAndHighlight(loadMore);
                 clickViaJS(loadMore);
+
+                // Tambahkan jeda untuk memastikan AJAX request selesai
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                }
 
                 // Tunggu artikel baru muncul
                 wait.until(d -> driver.findElements(allArticles).size() > initialArticles.size());
